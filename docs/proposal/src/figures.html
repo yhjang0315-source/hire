@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>커리어 사다리 그림</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  body { background: #fff; padding: 20px; }
+  .fig { background: #fff; margin-bottom: 40px; }
+
+  /* ---------- 공통 박스 ---------- */
+  .box { border: 2px solid var(--line); border-radius: 16px; background: #fff; padding: 18px 20px; }
+  .tag { display: inline-block; font-size: 13px; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
+  .tag.blue { background: var(--blue-soft); color: var(--blue); }
+  .tag.teal { background: var(--teal-soft); color: var(--teal); }
+  .tag.orange { background: var(--orange-soft); color: var(--orange); }
+  .tag.navy { background: var(--navy); color: #fff; }
+  .arrow { display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 34px; font-weight: 700; }
+
+  /* ---------- 그림 1: 컨셉 ---------- */
+  #fig1 { width: 1400px; padding: 28px; background: var(--bg); border-radius: 20px; }
+  #fig1 .row { display: grid; grid-template-columns: 1fr 44px 1.05fr 44px 1.5fr 44px 1.15fr; align-items: stretch; }
+  #fig1 .step-no { font-size: 14px; font-weight: 800; color: var(--muted); letter-spacing: 1px; }
+  #fig1 h3 { font-size: 24px; font-weight: 800; margin: 6px 0 12px; color: var(--navy); }
+  #fig1 li { list-style: none; font-size: 17px; line-height: 1.55; padding-left: 16px; position: relative; }
+  #fig1 li::before { content: "·"; position: absolute; left: 2px; font-weight: 800; }
+  #fig1 .diag .tag { display: block; margin-bottom: 8px; font-size: 16px; padding: 8px 12px; border-radius: 10px; }
+  #fig1 .tracks { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  #fig1 .track { border-radius: 12px; padding: 12px; }
+  #fig1 .track.a { background: var(--blue-soft); }
+  #fig1 .track.b { background: var(--teal-soft); }
+  #fig1 .track h4 { font-size: 17px; font-weight: 800; margin-bottom: 8px; }
+  #fig1 .track.a h4 { color: var(--blue); }
+  #fig1 .track.b h4 { color: var(--teal); }
+  #fig1 .rung { background: #fff; border-radius: 8px; padding: 6px 10px; font-size: 15px; font-weight: 600; margin-bottom: 6px; border-left: 5px solid var(--blue); }
+  #fig1 .rung.t { border-left-color: var(--navy); }
+  #fig1 .track.b .rung { border-left-color: var(--teal); }
+  #fig1 .card-part { border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; font-size: 16px; }
+  #fig1 .card-part b { display: block; font-size: 15px; color: var(--orange); }
+  #fig1 .loop { margin-top: 18px; display: flex; align-items: center; justify-content: center; gap: 14px; font-size: 18px; font-weight: 700; color: var(--navy); }
+  #fig1 .loop .line { flex: 1; height: 3px; background: repeating-linear-gradient(90deg, var(--navy) 0 10px, transparent 10px 18px); }
+
+  /* ---------- 그림 2: 역할 분담 ---------- */
+  #fig2 { width: 1300px; padding: 28px; background: var(--bg); border-radius: 20px; }
+  #fig2 .cols { display: grid; grid-template-columns: 1fr 190px 1fr; gap: 0; align-items: center; }
+  #fig2 h3 { font-size: 24px; font-weight: 800; margin-bottom: 4px; }
+  #fig2 .sub { font-size: 16px; color: var(--muted); margin-bottom: 14px; }
+  #fig2 .item { background: #fff; border-radius: 10px; padding: 10px 14px; font-size: 17px; margin-bottom: 8px; font-weight: 500; }
+  #fig2 .rule { border-color: var(--blue); }
+  #fig2 .rule h3 { color: var(--blue); }
+  #fig2 .rule .item { border-left: 5px solid var(--blue); background: var(--blue-soft); }
+  #fig2 .ai { border-color: var(--orange); }
+  #fig2 .ai h3 { color: var(--orange); }
+  #fig2 .ai .item { border-left: 5px solid var(--orange); background: var(--orange-soft); }
+  #fig2 .mid { text-align: center; padding: 0 10px; }
+  #fig2 .mid .slot { background: var(--navy); color: #fff; border-radius: 12px; padding: 14px 10px; font-size: 17px; font-weight: 700; line-height: 1.4; }
+  #fig2 .mid .arrow { font-size: 40px; }
+  #fig2 .guard { margin-top: 18px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  #fig2 .guard div { background: #fff; border: 2px dashed var(--line); border-radius: 12px; padding: 12px; font-size: 16px; text-align: center; font-weight: 600; }
+  #fig2 .guard b { display: block; color: var(--navy); font-size: 17px; margin-bottom: 2px; }
+
+  /* ---------- 그림 3: 서비스 흐름 ---------- */
+  #fig3 { width: 1400px; padding: 28px; background: var(--bg); border-radius: 20px; }
+  #fig3 .lane { display: grid; grid-template-columns: 120px 1fr; gap: 14px; align-items: center; margin-bottom: 14px; }
+  #fig3 .lane-name { font-size: 18px; font-weight: 800; color: #fff; background: var(--navy); border-radius: 12px; height: 100%; display: flex; align-items: center; justify-content: center; text-align: center; padding: 10px; }
+  #fig3 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  #fig3 .chip { background: #fff; border: 2px solid var(--line); border-radius: 10px; padding: 8px 12px; font-size: 16px; font-weight: 600; }
+  #fig3 .chip small { display: block; font-size: 13px; color: var(--muted); font-weight: 500; }
+  #fig3 .chip.mock { border-style: dashed; }
+  #fig3 .flow { display: grid; grid-template-columns: 1fr 30px 1fr 30px 1fr 30px 1fr 30px 1fr; align-items: stretch; }
+  #fig3 .mod { background: #fff; border: 2px solid var(--line); border-radius: 12px; padding: 12px; }
+  #fig3 .mod h4 { font-size: 18px; font-weight: 800; margin: 6px 0 4px; }
+  #fig3 .mod p { font-size: 14.5px; line-height: 1.45; color: var(--muted); }
+  #fig3 .mod.ai { border-color: var(--orange); }
+  #fig3 .mod.rule { border-color: var(--blue); }
+  #fig3 .flow .arrow { font-size: 26px; }
+  #fig3 .user { display: grid; grid-template-columns: 1fr 30px 1fr 30px 1fr 30px 1fr; align-items: center; }
+  #fig3 .user .u { background: #fff; border-radius: 12px; padding: 12px; font-size: 16px; font-weight: 700; text-align: center; border: 2px solid var(--teal); color: var(--teal); }
+  #fig3 .legend { display: flex; gap: 18px; justify-content: flex-end; font-size: 14px; color: var(--muted); margin-top: 4px; }
+  #fig3 .legend span::before { content: ""; display: inline-block; width: 14px; height: 14px; border-radius: 4px; margin-right: 6px; vertical-align: -2px; }
+  #fig3 .legend .l1::before { border: 2px solid var(--orange); }
+  #fig3 .legend .l2::before { border: 2px solid var(--blue); }
+  #fig3 .legend .l3::before { border: 2px dashed var(--muted); }
+
+  /* ---------- 휴대폰 목업 (그림 4~6) ---------- */
+  .phone { width: 400px; height: 712px; border: 10px solid #1d2433; border-radius: 44px; overflow: hidden; background: var(--bg); position: relative; }
+  .phone .status { height: 30px; background: var(--navy); color: #fff; font-size: 12px; display: flex; justify-content: space-between; padding: 8px 22px 0; }
+  .phone .appbar { background: var(--navy); color: #fff; padding: 8px 18px 14px; }
+  .phone .appbar .brand { font-size: 12px; opacity: .8; }
+  .phone .appbar h2 { font-size: 19px; font-weight: 800; }
+  .phone .body { padding: 14px 14px; }
+  .phone .card { background: #fff; border-radius: 14px; padding: 12px 14px; margin-bottom: 10px; box-shadow: 0 1px 0 var(--line); }
+  .phone label { display: block; font-size: 12.5px; font-weight: 700; color: var(--muted); margin-bottom: 5px; }
+  .phone .field { border: 1.5px solid var(--line); border-radius: 9px; padding: 8px 10px; font-size: 13.5px; background: #fff; line-height: 1.45; }
+  .phone .pill { display: inline-block; background: var(--blue-soft); color: var(--blue); border-radius: 999px; padding: 4px 10px; font-size: 12.5px; font-weight: 700; margin: 0 4px 4px 0; }
+  .phone .pill.ghost { background: #fff; border: 1.5px dashed var(--line); color: var(--muted); }
+  .phone table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  .phone td { padding: 5px 2px; border-bottom: 1px solid var(--line); }
+  .phone td.r { text-align: right; font-weight: 700; color: #c0392b; }
+  .phone .btn { background: var(--blue); color: #fff; text-align: center; border-radius: 12px; padding: 12px; font-size: 15px; font-weight: 800; }
+  .phone .btn.sub { background: #fff; color: var(--blue); border: 1.5px solid var(--blue); }
+  .phone .btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .phone .diag { background: var(--orange-soft); border-radius: 14px; padding: 12px 14px; margin-bottom: 10px; }
+  .phone .diag b { color: var(--orange); font-size: 15px; }
+  .phone .diag p { font-size: 13px; margin-top: 3px; }
+  .phone .best { background: var(--navy); color: #fff; border-radius: 14px; padding: 12px 14px; margin-bottom: 10px; }
+  .phone .best .k { font-size: 12px; opacity: .85; font-weight: 700; }
+  .phone .best h3 { font-size: 17px; font-weight: 800; margin: 3px 0; }
+  .phone .best .meta { font-size: 12.5px; opacity: .9; }
+  .phone .meters { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+  .phone .meter { background: rgba(255,255,255,.12); border-radius: 8px; padding: 6px 8px; font-size: 12px; }
+  .phone .meter b { display: block; font-size: 16px; }
+  .phone .tier { margin-bottom: 8px; }
+  .phone .tier .h { font-size: 12.5px; font-weight: 800; margin-bottom: 4px; }
+  .phone .job { background: #fff; border-radius: 10px; padding: 8px 10px; font-size: 13px; display: flex; justify-content: space-between; margin-bottom: 5px; border-left: 5px solid var(--blue); }
+  .phone .job span { color: var(--muted); font-size: 12px; }
+  .phone .tier.t .job { border-left-color: var(--navy); }
+  .phone .tier.s .job { border-left-color: #7c8aa5; }
+  .phone .hl { background: var(--orange-soft); border-radius: 12px; padding: 10px 12px; font-size: 13.5px; line-height: 1.5; margin-bottom: 10px; }
+  .phone .sec { font-size: 13px; font-weight: 800; color: var(--navy); margin: 4px 0 6px; }
+  .phone .why { font-size: 12.5px; line-height: 1.5; margin-bottom: 6px; padding-left: 20px; position: relative; }
+  .phone .why i { position: absolute; left: 0; top: 1px; width: 16px; height: 16px; border-radius: 50%; background: var(--navy); color: #fff; font-style: normal; font-size: 11px; text-align: center; line-height: 16px; font-weight: 700; }
+  .phone .src { color: var(--blue); font-size: 11px; font-weight: 700; }
+  .phone .gauge { height: 10px; background: var(--line); border-radius: 99px; position: relative; margin: 6px 0 2px; }
+  .phone .gauge .now { position: absolute; left: 0; top: 0; bottom: 0; width: 45%; background: var(--blue); border-radius: 99px; }
+  .phone .gauge .fut { position: absolute; left: 0; top: 0; bottom: 0; width: 70%; background: repeating-linear-gradient(45deg, #9dbbf0 0 5px, #c9daf7 5px 10px); border-radius: 99px; }
+  .phone .gl { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--muted); }
+  .phone .tl { position: relative; padding-left: 16px; }
+  .phone .tl::before { content: ""; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 2px; background: var(--line); }
+  .phone .tl div { position: relative; font-size: 12.5px; line-height: 1.4; margin-bottom: 5px; }
+  .phone .tl div::before { content: ""; position: absolute; left: -16px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--teal); }
+  .phone .tl b { color: var(--teal); }
+</style>
+</head>
+<body>
+
+<!-- 그림 1: 서비스 컨셉 -->
+<section class="fig" id="fig1">
+  <div class="row">
+    <div class="box">
+      <div class="step-no">INPUT</div>
+      <h3>나의 상황 입력</h3>
+      <ul>
+        <li>관심·목표 직종</li>
+        <li>전공 · 자격증</li>
+        <li>경력·경험(자유 서술)</li>
+        <li><b>지원 이력과 불합격 결과</b></li>
+        <li>희망 조건 · 구직 가능 기간</li>
+      </ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="box diag">
+      <div class="step-no">STEP 1</div>
+      <h3>탈락 원인 진단</h3>
+      <span class="tag orange">자격 격차형</span>
+      <span class="tag orange">서류 표현형</span>
+      <span class="tag orange">조직 적합형</span>
+      <div style="font-size:15px;color:var(--muted);margin-top:4px">요건 충족도 × 탈락 단계 패턴</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="box">
+      <div class="step-no">STEP 2</div>
+      <h3>두 갈래 공고 추천</h3>
+      <div class="tracks">
+        <div class="track a">
+          <h4>사다리 트랙</h4>
+          <div class="rung t">★ 목표 공고</div>
+          <div class="rung">② 경력 발판</div>
+          <div class="rung">③ 역량 키우기</div>
+          <div class="rung">① 즉시 적합</div>
+        </div>
+        <div class="track b">
+          <h4>방향 전환 트랙</h4>
+          <div class="rung">서류 표현 개선</div>
+          <div class="rung">면접 보완</div>
+          <div class="rung">성향 맞는 회사</div>
+          <div class="rung">눈 낮추기 ×</div>
+        </div>
+      </div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="box">
+      <div class="step-no">STEP 3</div>
+      <h3>설득형 추천 카드</h3>
+      <div class="card-part" style="background:var(--orange-soft)"><b>A. 한마디</b>공감과 핵심</div>
+      <div class="card-part" style="background:var(--blue-soft)"><b style="color:var(--blue)">B. 판단 근거</b>데이터 기반 3가지</div>
+      <div class="card-part" style="background:var(--teal-soft)"><b style="color:var(--teal)">C. 이후 계획</b>지원 전 → 12개월</div>
+    </div>
+  </div>
+  <div class="loop"><div class="line"></div>↺ 지원 결과를 입력하면 다시 진단 (피드백 루프)<div class="line"></div></div>
+</section>
+
+<!-- 그림 2: 역할 분담 -->
+<section class="fig" id="fig2">
+  <div class="cols">
+    <div class="box rule">
+      <h3>규칙 · 데이터 = 판단</h3>
+      <div class="sub">설명 가능하고 재현 가능한 계산</div>
+      <div class="item">공고 점수 F · T · C · S 계산</div>
+      <div class="item">탈락 원인 진단 분기</div>
+      <div class="item">사다리 단계 분류</div>
+      <div class="item">구인배수 · 마감일 · 역량 충족도 %</div>
+      <div class="item">훈련과정 매칭(API)</div>
+    </div>
+    <div class="mid">
+      <div class="arrow">→</div>
+      <div class="slot">수치를<br>문장 틀(슬롯)에<br>삽입</div>
+      <div class="arrow">→</div>
+    </div>
+    <div class="box ai">
+      <h3>생성형 AI = 이해 · 설명</h3>
+      <div class="sub">비정형 텍스트 이해와 개인화 문장</div>
+      <div class="item">경력 서술 → 역량 구조화</div>
+      <div class="item">공고 → 요구 역량 · 인재상 추출</div>
+      <div class="item">역량 표현 의미 매핑(임베딩)</div>
+      <div class="item">탈락 패턴 해석 문장</div>
+      <div class="item">한마디 · 근거 · 12개월 계획 생성</div>
+    </div>
+  </div>
+  <div class="guard">
+    <div><b>수치 생성 금지</b>AI는 계산값만 사용</div>
+    <div><b>금지 표현 필터</b>"눈을 낮추세요" 등 차단</div>
+    <div><b>가설로 제시</b>탈락 원인은 확인 질문과 함께</div>
+    <div><b>개인정보 보호</b>이력·성향 기본 비저장</div>
+  </div>
+</section>
+
+<!-- 그림 3: 서비스 흐름 -->
+<section class="fig" id="fig3">
+  <div class="lane">
+    <div class="lane-name">데이터</div>
+    <div class="chips">
+      <div class="chip">채용정보 목록·상세<small>고용24 Open API</small></div>
+      <div class="chip">직업정보<small>고용24 Open API</small></div>
+      <div class="chip">학과정보<small>고용24 Open API</small></div>
+      <div class="chip">국민내일배움카드 훈련과정<small>고용24 Open API</small></div>
+      <div class="chip">구인구직취업현황(구인배수)<small>고용행정통계 EIS</small></div>
+      <div class="chip mock">입사지원 이력 · 프로필<small>모의데이터</small></div>
+    </div>
+  </div>
+  <div class="lane">
+    <div class="lane-name">처리</div>
+    <div class="flow">
+      <div class="mod ai"><span class="tag orange">AI</span><h4>① 역량 구조화</h4><p>경력 서술·공고 본문 → 역량 키워드, 인재상 추출</p></div>
+      <div class="arrow">→</div>
+      <div class="mod rule"><span class="tag blue">규칙</span><h4>② 탈락 원인 진단</h4><p>지원 공고 요건 충족도 평균 × 서류/면접 탈락 비율</p></div>
+      <div class="arrow">→</div>
+      <div class="mod rule"><span class="tag blue">규칙</span><h4>③ 공고 점수</h4><p>F 현재 적합도 · T 목표 기여도 · C 경력 인정 · S 1순위</p></div>
+      <div class="arrow">→</div>
+      <div class="mod rule"><span class="tag blue">규칙</span><h4>④ 트랙·단계 분류</h4><p>사다리(목표·발판·역량·즉시) / 방향 전환</p></div>
+      <div class="arrow">→</div>
+      <div class="mod ai"><span class="tag orange">AI</span><h4>⑤ 추천 카드 생성</h4><p>한마디 · 판단 근거 · 12개월 계획 · 플랜 B</p></div>
+    </div>
+  </div>
+  <div class="lane">
+    <div class="lane-name">사용자</div>
+    <div class="user">
+      <div class="u">상황 입력</div>
+      <div class="arrow">→</div>
+      <div class="u">진단·추천 확인</div>
+      <div class="arrow">→</div>
+      <div class="u">고용24에서 지원</div>
+      <div class="arrow">→</div>
+      <div class="u">결과 입력 ↺ 재진단</div>
+    </div>
+  </div>
+  <div class="legend"><span class="l1">생성형 AI</span><span class="l2">규칙·데이터 계산</span><span class="l3">모의데이터</span></div>
+</section>
+
+<!-- 그림 4: 입력 화면 -->
+<section class="fig" id="fig4" style="width:400px">
+  <div class="phone">
+    <div class="status"><span>9:41</span><span>고용24</span></div>
+    <div class="appbar"><div class="brand">고용24 · 커리어 사다리</div><h2>나의 상황 입력</h2></div>
+    <div class="body">
+      <div class="card"><label>관심·목표 직종</label><span class="pill">기계설계 엔지니어 ×</span><span class="pill ghost">+ 추가</span></div>
+      <div class="card"><label>전공 · 자격증</label><div class="field">기계공학과 · 일반기계기사(필기 합격)</div></div>
+      <div class="card"><label>경력·경험 (자유롭게 적어 주세요)</label><div class="field">CAD 수업 팀 프로젝트에서 부품 도면 작성, 식품공장 생산 아르바이트 6개월</div></div>
+      <div class="card"><label>지원 이력과 결과</label>
+        <table>
+          <tr><td>A사 · 기계설계</td><td class="r">서류 탈락</td></tr>
+          <tr><td>B사 · 설계 엔지니어</td><td class="r">서류 탈락</td></tr>
+          <tr><td>C사 · 기구설계</td><td class="r">서류 탈락</td></tr>
+          <tr><td colspan="2" style="color:var(--muted)">외 2건 · <b style="color:var(--blue)">+ 이력 추가</b></td></tr>
+        </table>
+      </div>
+      <div class="card"><label>희망 조건</label><span class="pill">경기</span><span class="pill">연 3,000만원 이상</span><span class="pill">구직 가능 3개월</span></div>
+      <div class="btn">진단 받기</div>
+    </div>
+  </div>
+</section>
+
+<!-- 그림 5: 추천 결과 화면 -->
+<section class="fig" id="fig5" style="width:400px">
+  <div class="phone">
+    <div class="status"><span>9:41</span><span>고용24</span></div>
+    <div class="appbar"><div class="brand">고용24 · 커리어 사다리</div><h2>진단과 추천 결과</h2></div>
+    <div class="body">
+      <div class="diag"><b>진단: 자격 격차형</b><p>지원한 공고 5곳 중 4곳이 '관련 경력'을 요구했어요. 실력보다 경력 한 줄이 장벽이에요.</p></div>
+      <div class="best">
+        <div class="k">★ 지금 지원 1순위</div>
+        <h3>D사 · 품질관리(QC)</h3>
+        <div class="meta">경기 화성 · 신입 가능 · 마감 D-5</div>
+        <div class="meters"><div class="meter">현재 적합도<b>86%</b></div><div class="meter">목표 기여도<b>72%</b></div></div>
+      </div>
+      <div class="tier t"><div class="h">★ 목표 공고</div><div class="job">E사 · 기계설계<span>적합도 41%</span></div></div>
+      <div class="tier"><div class="h" style="color:var(--blue)">② 경력 발판</div><div class="job">F사 · 설계 보조(CAD)<span>경력 인정 ↑</span></div></div>
+      <div class="tier"><div class="h" style="color:var(--blue)">③ 역량 키우기</div><div class="job">D사 · 품질관리(QC)<span>★ 1순위</span></div><div class="job">G사 · 설비보전<span>기여도 65%</span></div></div>
+      <div class="tier s"><div class="h" style="color:#7c8aa5">① 즉시 적합</div><div class="job">H사 · 생산관리<span>적합도 91%</span></div></div>
+      <div style="font-size:11.5px;color:var(--muted);text-align:center;margin-top:6px">회사명·수치는 예시</div>
+    </div>
+  </div>
+</section>
+
+<!-- 그림 6: 추천 카드 상세 -->
+<section class="fig" id="fig6" style="width:400px">
+  <div class="phone">
+    <div class="status"><span>9:41</span><span>고용24</span></div>
+    <div class="appbar"><div class="brand">③ 역량 키우기 · 지금 지원 1순위</div><h2>D사 · 품질관리(QC)</h2></div>
+    <div class="body">
+      <div class="sec">A. 한마디</div>
+      <div class="hl">다섯 번의 도전 끝에 찾은 우회로예요. 돌아가는 길 같지만, 설계직에 가장 빨리 닿는 길일 수 있어요.</div>
+      <div class="sec">B. 왜 이렇게 판단했나요?</div>
+      <div class="why"><i>1</i>지원하신 5곳 중 4곳이 '관련 경력 1년 이상'을 우대했어요. <span class="src">내 지원 이력</span></div>
+      <div class="why"><i>2</i>설계에 필요한 역량 중 지금 약 45%를 갖췄고, 도면 해독·공정 이해 경험이 비어 있어요. <span class="src">직업정보</span></div>
+      <div class="why"><i>3</i>매일 도면을 보고 공정을 점검하는 일이라, 1년이면 약 70%까지 오를 것으로 예상돼요. <span class="src">공고·구인배수</span></div>
+      <div class="card" style="padding:8px 12px">
+        <div style="font-size:12px;font-weight:700">목표 역량 충족도</div>
+        <div class="gauge"><div class="fut"></div><div class="now"></div></div>
+        <div class="gl"><span>지금 45%</span><span>1년 후 예상 70%</span></div>
+      </div>
+      <div class="sec">C. 이후 계획</div>
+      <div class="tl">
+        <div><b>지원 전</b> CAD 프로젝트를 '도면 작성 경험'으로 기재</div>
+        <div><b>1~3개월</b> 도면·검사 기준 익히기, 업무 기록</div>
+        <div><b>4~6개월</b> 내일배움카드 3D CAD 과정 병행</div>
+        <div><b>7~12개월</b> 역량 재점검 → 설계 보조 공고 알림</div>
+        <div><b>12개월~</b> 목표 공고 재도전 · 플랜 B: G사 설비보전</div>
+      </div>
+      <div class="btns" style="margin-top:8px"><div class="btn">공고 보기</div><div class="btn sub">결과 입력</div></div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
