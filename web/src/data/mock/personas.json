@@ -1,0 +1,78 @@
+{
+  "_note": "모의데이터 — 시연용 가상 페르소나(가명). 실제 개인정보 없음. expected는 설계 문서 기준 기대 결과로 엔진 테스트에 사용",
+  "items": [
+    {
+      "profile": {
+        "id": "P-A12", "alias": "구직자 A12",
+        "targetOccupationCodes": ["1511"],
+        "major": "기계", "education": "대졸",
+        "certificates": ["일반기계기사(필기)"],
+        "careerYears": 0,
+        "experienceText": "CAD 수업 팀 프로젝트에서 부품 도면을 작성했고, 식품공장 생산 아르바이트를 6개월 했어요.",
+        "competencies": ["도면 작성", "생산 공정 이해", "품질 기준 준수"],
+        "region": "경기", "minSalary": 3000, "searchMonths": 3,
+        "traits": { "pace": 0, "lead": 0, "change": 0, "scope": 1, "work": 0 }
+      },
+      "applications": [
+        { "postingId": "MOCK-A01", "appliedAt": "2026-10-05", "result": "서류탈락" },
+        { "postingId": "MOCK-A02", "appliedAt": "2026-10-08", "result": "서류탈락" },
+        { "postingId": "MOCK-A03", "appliedAt": "2026-10-12", "result": "서류탈락" },
+        { "postingId": "MOCK-A04", "appliedAt": "2026-10-16", "result": "서류탈락" },
+        { "postingId": "MOCK-A05", "appliedAt": "2026-10-20", "result": "서류탈락" }
+      ],
+      "expected": {
+        "diagnosis": "자격격차형",
+        "bestPostingId": "MOCK-D01",
+        "tiers": {
+          "target": ["MOCK-E01"],
+          "stepping": ["MOCK-F01"],
+          "growing": ["MOCK-D01", "MOCK-G01"],
+          "immediate": ["MOCK-H01"]
+        }
+      }
+    },
+    {
+      "profile": {
+        "id": "P-B07", "alias": "구직자 B07",
+        "targetOccupationCodes": ["1511", "1512"],
+        "major": "기계", "education": "대졸",
+        "certificates": ["일반기계기사"],
+        "careerYears": 0.5,
+        "experienceText": "설계팀 인턴 6개월 동안 솔리드웍스로 부품을 모델링하고 도면 검토를 도왔어요.",
+        "competencies": ["3D CAD", "도면 작성", "설계 검토", "솔리드웍스"],
+        "region": "경기", "minSalary": 3300, "searchMonths": 6,
+        "traits": { "pace": 2, "lead": 1, "change": 1, "scope": 2, "work": 1 }
+      },
+      "applications": [
+        { "postingId": "MOCK-B01", "appliedAt": "2026-10-02", "result": "면접탈락" },
+        { "postingId": "MOCK-B02", "appliedAt": "2026-10-06", "result": "면접탈락" },
+        { "postingId": "MOCK-B03", "appliedAt": "2026-10-10", "result": "면접탈락" },
+        { "postingId": "MOCK-B04", "appliedAt": "2026-10-15", "result": "면접탈락" },
+        { "postingId": "MOCK-B05", "appliedAt": "2026-10-21", "result": "서류탈락" }
+      ],
+      "expected": { "diagnosis": "조직적합형", "bestPostingId": "MOCK-Q01" }
+    },
+    {
+      "profile": {
+        "id": "P-C33", "alias": "구직자 C33",
+        "targetOccupationCodes": ["1331", "1332"],
+        "major": "컴퓨터", "education": "대졸",
+        "certificates": [],
+        "careerYears": 0,
+        "experienceText": "학교 팀 프로젝트로 React 기반 동아리 웹 사이트를 만들었고, 깃허브로 협업했어요.",
+        "competencies": ["React", "JavaScript", "Git", "HTML/CSS", "팀 프로젝트"],
+        "region": "서울", "minSalary": 3000, "searchMonths": 3,
+        "traits": { "pace": 0, "lead": 0, "change": -1, "scope": 0, "work": 1 }
+      },
+      "applications": [
+        { "postingId": "MOCK-C01", "appliedAt": "2026-10-01", "result": "서류탈락" },
+        { "postingId": "MOCK-C02", "appliedAt": "2026-10-04", "result": "서류탈락" },
+        { "postingId": "MOCK-C03", "appliedAt": "2026-10-09", "result": "서류탈락" },
+        { "postingId": "MOCK-C04", "appliedAt": "2026-10-13", "result": "서류탈락" },
+        { "postingId": "MOCK-C05", "appliedAt": "2026-10-18", "result": "서류탈락" },
+        { "postingId": "MOCK-C06", "appliedAt": "2026-10-25", "result": "대기" }
+      ],
+      "expected": { "diagnosis": "서류표현형" }
+    }
+  ]
+}

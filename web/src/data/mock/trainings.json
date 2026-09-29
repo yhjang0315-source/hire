@@ -1,0 +1,11 @@
+{
+  "_note": "모의데이터 — 국민내일배움카드 훈련과정 형태를 흉내 낸 가상 과정",
+  "items": [
+    { "id": "MOCK-T01", "title": "3D CAD(솔리드웍스) 설계 실무", "institution": "가상 기계교육원", "competencies": ["3D CAD", "솔리드웍스"], "region": "경기", "startDate": "2026-12-01", "endDate": "2027-01-31", "cost": 1800000, "realCost": 270000, "employmentRate6": 68, "satisfaction": 91 },
+    { "id": "MOCK-T02", "title": "품질경영·QC 실무", "institution": "가상 품질아카데미", "competencies": ["품질 기준 이해", "측정 장비 사용"], "region": "경기", "startDate": "2026-12-08", "endDate": "2027-01-16", "cost": 1200000, "realCost": 180000, "employmentRate6": 72, "satisfaction": 88 },
+    { "id": "MOCK-T03", "title": "생산설비 보전 기능 실무", "institution": "가상 설비기술원", "competencies": ["설비 점검", "전기 기초"], "region": "경기", "startDate": "2026-12-15", "endDate": "2027-02-26", "cost": 2100000, "realCost": 315000, "employmentRate6": 75, "satisfaction": 86 },
+    { "id": "MOCK-T04", "title": "전산응용기계제도", "institution": "가상 기계교육원", "competencies": ["2D CAD", "도면 해독"], "region": "경기", "startDate": "2026-12-01", "endDate": "2027-01-09", "cost": 900000, "realCost": 135000, "employmentRate6": 61, "satisfaction": 89 },
+    { "id": "MOCK-T05", "title": "TypeScript·React 실무 프로젝트", "institution": "가상 코딩스쿨", "competencies": ["TypeScript", "React"], "region": "서울", "startDate": "2026-12-07", "endDate": "2027-02-19", "cost": 2400000, "realCost": 360000, "employmentRate6": 64, "satisfaction": 90 },
+    { "id": "MOCK-T06", "title": "생산관리 실무와 엑셀 데이터 관리", "institution": "가상 경영교육원", "competencies": ["엑셀", "생산 공정 이해"], "region": "경기", "startDate": "2026-12-03", "endDate": "2026-12-24", "cost": 600000, "realCost": 90000, "employmentRate6": 58, "satisfaction": 85 }
+  ]
+}
