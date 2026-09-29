@@ -74,7 +74,67 @@
   #fig3 .mod.ai { border-color: var(--orange); }
   #fig3 .mod.rule { border-color: var(--blue); }
   #fig3 .flow .arrow { font-size: 26px; }
-  #fig3 .user { display: grid; grid-template-columns: 1fr 30px 1fr 30px 1fr 30px 1fr; align-items: center; }
+  #fig3 .user { display: grid; grid-template-columns: 1fr 30px 1fr 30px 1fr 30px 1fr 30px 1fr; align-items: center; }
+
+  /* ---------- 대화형 인터뷰 · 모의면접 ---------- */
+  .phone .chat { display: flex; flex-direction: column; gap: 6px; }
+  .phone .bub { max-width: 86%; border-radius: 12px; padding: 7px 10px; font-size: 12.5px; line-height: 1.45; }
+  .phone .bub.ai { background: var(--blue-soft); align-self: flex-start; border-top-left-radius: 3px; }
+  .phone .bub.me { background: var(--navy); color: #fff; align-self: flex-end; border-top-right-radius: 3px; }
+  .phone .bub .who { display: block; font-size: 11px; font-weight: 800; color: var(--blue); margin-bottom: 1px; }
+  .phone .pill.ok { background: var(--teal-soft); color: var(--teal); }
+  .phone .inp { display: flex; gap: 6px; margin-bottom: 6px; }
+  .phone .inp .field { flex: 1; color: var(--muted); }
+  .phone .inp .mini { background: var(--blue); color: #fff; border-radius: 9px; padding: 8px 10px; font-size: 12.5px; font-weight: 800; }
+  .phone .fb { border-radius: 12px; padding: 10px 12px; font-size: 12.5px; line-height: 1.5; margin-bottom: 8px; }
+  .phone .fb b { display: block; font-size: 12.5px; margin-bottom: 2px; }
+  .phone .fb.good { background: var(--teal-soft); } .phone .fb.good b { color: var(--teal); }
+  .phone .fb.fix { background: var(--orange-soft); } .phone .fb.fix b { color: var(--orange); }
+  .phone .prog { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+
+  /* ---------- 그림 7: 화면 구성도 ---------- */
+  #fig7 { width: 1400px; padding: 26px; background: var(--bg); border-radius: 20px; }
+  #fig7 .cols { display: grid; grid-template-columns: 1fr 34px 0.8fr 34px 1.2fr 34px 1fr 34px 1fr; align-items: stretch; }
+  #fig7 .grp { background: #fff; border: 2px solid var(--line); border-radius: 16px; padding: 12px; }
+  #fig7 .grp h3 { font-size: 19px; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+  #fig7 .sc { border-radius: 10px; background: var(--bg); padding: 8px 10px; margin-bottom: 8px; }
+  #fig7 .sc .n { font-size: 15.5px; font-weight: 800; }
+  #fig7 .sc p { font-size: 13.5px; color: var(--muted); line-height: 1.4; margin-top: 2px; }
+  #fig7 .p { float: right; font-size: 11.5px; font-weight: 800; border-radius: 99px; padding: 2px 8px; }
+  #fig7 .p0 { background: var(--navy); color: #fff; }
+  #fig7 .p1 { background: var(--blue-soft); color: var(--blue); }
+  #fig7 .p2 { background: #eceff4; color: var(--muted); }
+  #fig7 .arrow { font-size: 30px; }
+  #fig7 .foot { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; font-size: 16px; font-weight: 700; color: var(--navy); }
+  #fig7 .foot .line { flex: 1; height: 3px; margin: 0 14px; background: repeating-linear-gradient(90deg, var(--navy) 0 10px, transparent 10px 18px); }
+  #fig7 .leg { font-size: 14px; color: var(--muted); font-weight: 600; }
+  #fig7 .leg .p { float: none; margin-left: 6px; }
+
+  /* ---------- 그림 9: 상담사 대시보드 ---------- */
+  #fig9 { width: 1000px; padding: 10px; background: #1d2433; border-radius: 18px; }
+  #fig9 .scr { background: var(--bg); border-radius: 10px; overflow: hidden; }
+  #fig9 .top { background: var(--navy); color: #fff; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; }
+  #fig9 .top h2 { font-size: 19px; font-weight: 800; }
+  #fig9 .top span { font-size: 13px; opacity: .85; }
+  #fig9 .wrap { display: grid; grid-template-columns: 1.55fr 1fr; gap: 14px; padding: 14px; }
+  #fig9 .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
+  #fig9 .kpi { background: #fff; border-radius: 12px; padding: 10px 14px; }
+  #fig9 .kpi span { font-size: 13px; color: var(--muted); font-weight: 600; }
+  #fig9 .kpi b { display: block; font-size: 24px; font-weight: 800; color: var(--navy); }
+  #fig9 table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; font-size: 13.5px; }
+  #fig9 th { background: var(--blue-soft); color: var(--navy); padding: 8px; text-align: left; font-size: 13px; }
+  #fig9 td { padding: 8px; border-top: 1px solid var(--line); }
+  #fig9 tr.sel td { background: #fff7ec; }
+  #fig9 .t { font-size: 12px; font-weight: 800; border-radius: 99px; padding: 2px 8px; }
+  #fig9 .t.a { background: var(--blue-soft); color: var(--blue); }
+  #fig9 .t.b { background: var(--teal-soft); color: var(--teal); }
+  #fig9 .t.c { background: var(--orange-soft); color: var(--orange); }
+  #fig9 .side { background: #fff; border-radius: 12px; padding: 14px; }
+  #fig9 .side h3 { font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+  #fig9 .side p, #fig9 .side li { font-size: 13.5px; line-height: 1.5; }
+  #fig9 .side ul { padding-left: 18px; margin: 6px 0 10px; }
+  #fig9 .side .btn { background: var(--blue); color: #fff; text-align: center; border-radius: 10px; padding: 10px; font-size: 14px; font-weight: 800; }
+  #fig9 .mock { font-size: 12px; color: var(--muted); padding: 0 14px 12px; }
   #fig3 .user .u { background: #fff; border-radius: 12px; padding: 12px; font-size: 16px; font-weight: 700; text-align: center; border: 2px solid var(--teal); color: var(--teal); }
   #fig3 .legend { display: flex; gap: 18px; justify-content: flex-end; font-size: 14px; color: var(--muted); margin-top: 4px; }
   #fig3 .legend span::before { content: ""; display: inline-block; width: 14px; height: 14px; border-radius: 4px; margin-right: 6px; vertical-align: -2px; }
@@ -83,7 +143,7 @@
   #fig3 .legend .l3::before { border: 2px dashed var(--muted); }
 
   /* ---------- 휴대폰 목업 (그림 4~6) ---------- */
-  .phone { width: 400px; height: 712px; border: 10px solid #1d2433; border-radius: 44px; overflow: hidden; background: var(--bg); position: relative; }
+  .phone { width: 400px; height: 740px; border: 10px solid #1d2433; border-radius: 44px; overflow: hidden; background: var(--bg); position: relative; }
   .phone .status { height: 30px; background: var(--navy); color: #fff; font-size: 12px; display: flex; justify-content: space-between; padding: 8px 22px 0; }
   .phone .appbar { background: var(--navy); color: #fff; padding: 8px 18px 14px; }
   .phone .appbar .brand { font-size: 12px; opacity: .8; }
@@ -259,6 +319,8 @@
       <div class="arrow">→</div>
       <div class="u">진단·추천 확인</div>
       <div class="arrow">→</div>
+      <div class="u">서류 코칭·모의면접·훈련</div>
+      <div class="arrow">→</div>
       <div class="u">고용24에서 지원</div>
       <div class="arrow">→</div>
       <div class="u">결과 입력 ↺ 재진단</div>
@@ -274,17 +336,22 @@
     <div class="appbar"><div class="brand">고용24 · 커리어 사다리</div><h2>나의 상황 입력</h2></div>
     <div class="body">
       <div class="card"><label>관심·목표 직종</label><span class="pill">기계설계 엔지니어 ×</span><span class="pill ghost">+ 추가</span></div>
-      <div class="card"><label>전공 · 자격증</label><div class="field">기계공학과 · 일반기계기사(필기 합격)</div></div>
-      <div class="card"><label>경력·경험 (자유롭게 적어 주세요)</label><div class="field">CAD 수업 팀 프로젝트에서 부품 도면 작성, 식품공장 생산 아르바이트 6개월</div></div>
+      <div class="card"><label>AI 경력 인터뷰 · 기계공학과 · 일반기계기사(필기)</label>
+        <div class="chat">
+          <div class="bub ai"><span class="who">AI</span>학교나 아르바이트에서 해 본 일을 편하게 말해 주세요.</div>
+          <div class="bub me">CAD 수업에서 부품 도면을 그렸고, 식품공장에서 6개월 일했어요.</div>
+          <div class="bub ai"><span class="who">AI</span>이렇게 정리했어요. 맞나요?</div>
+        </div>
+        <div style="margin-top:6px"><span class="pill ok">도면 작성</span><span class="pill ok">생산 공정 이해</span><span class="pill ok">품질 기준 준수</span></div>
+      </div>
       <div class="card"><label>지원 이력과 결과</label>
+        <div class="inp"><div class="field">고용24 공고 번호 입력</div><div class="mini">자동 채움</div></div>
         <table>
           <tr><td>A사 · 기계설계</td><td class="r">서류 탈락</td></tr>
           <tr><td>B사 · 설계 엔지니어</td><td class="r">서류 탈락</td></tr>
-          <tr><td>C사 · 기구설계</td><td class="r">서류 탈락</td></tr>
-          <tr><td colspan="2" style="color:var(--muted)">외 2건 · <b style="color:var(--blue)">+ 이력 추가</b></td></tr>
+          <tr><td colspan="2" style="color:var(--muted)">외 3건 · 희망: 경기 · 연 3,000만원↑ · 3개월</td></tr>
         </table>
       </div>
-      <div class="card"><label>희망 조건</label><span class="pill">경기</span><span class="pill">연 3,000만원 이상</span><span class="pill">구직 가능 3개월</span></div>
       <div class="btn">진단 받기</div>
     </div>
   </div>
@@ -341,6 +408,92 @@
     </div>
   </div>
 </section>
+
+<!-- 그림 7: 화면 구성도 -->
+<section class="fig" id="fig7">
+  <div class="cols">
+    <div class="grp"><h3>시작</h3>
+      <div class="sc"><span class="p p0">P0</span><div class="n">S1 온보딩·AI 경력 인터뷰</div><p>목표 직종·전공 선택, 대화로 경력 입력 → 역량 태그</p></div>
+      <div class="sc"><span class="p p1">P1</span><div class="n">S2 지원 이력 추가</div><p>고용24 공고 번호 입력 → 공고 요건 자동 채움, 결과 선택</p></div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="grp"><h3>진단</h3>
+      <div class="sc"><span class="p p0">P0</span><div class="n">S3 진단 결과</div><p>자격 격차형 / 서류 표현형 / 조직 적합형과 근거</p></div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="grp"><h3>추천</h3>
+      <div class="sc"><span class="p p0">P0</span><div class="n">S4 추천 결과</div><p>지금 지원 1순위 + 사다리 뷰 · <b>P2</b> 지도·목표 비교</p></div>
+      <div class="sc"><span class="p p0">P0</span><div class="n">S5 추천 카드 상세</div><p>한마디 · 판단 근거 · 역량 충족도 · 12개월 계획</p></div>
+      <div class="sc"><span class="p p1">P1</span><div class="n">S6 공고·기업 상세</div><p>기업 정보, 직종·지역 구인배수 차트</p></div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="grp"><h3>준비·실행</h3>
+      <div class="sc"><span class="p p1">P1</span><div class="n">S7 서류 코칭</div><p>공고 요구 역량에 맞춰 경험 문장 개선</p></div>
+      <div class="sc"><span class="p p1">P1</span><div class="n">S8 AI 모의면접</div><p>회사 인재상 기반 질문·피드백</p></div>
+      <div class="sc"><span class="p p1">P1</span><div class="n">S9 훈련과정 추천</div><p>부족 역량별 내일배움카드 과정(취업률순)</p></div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="grp"><h3>관리</h3>
+      <div class="sc"><span class="p p1">P1</span><div class="n">S10 마이페이지</div><p>지원 현황 보드, 결과 입력, 재진단 기록, 알림</p></div>
+      <div class="sc"><span class="p p1">P1</span><div class="n">S11 커리어 경로</div><p>목표까지 타임라인, 역량 충족도 변화</p></div>
+      <div class="sc"><span class="p p2">P2</span><div class="n">S12 상담사 대시보드</div><p>반복 탈락자 목록, 진단 요약, 상담 요청</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="leg">우선순위<span class="p p0">P0 반드시 시연</span><span class="p p1">P1 구현 목표</span><span class="p p2">P2 여유 시</span></span><div class="line"></div>↺ S10 결과 입력 → S3 재진단</div>
+</section>
+
+<!-- 그림 8: AI 모의면접 -->
+<section class="fig" id="fig8" style="width:400px">
+  <div class="phone">
+    <div class="status"><span>9:41</span><span>고용24</span></div>
+    <div class="appbar"><div class="brand">조직 적합형 · 방향 전환 트랙</div><h2>AI 모의면접 · J사 기계설계</h2></div>
+    <div class="body">
+      <div class="diag" style="padding:9px 12px"><b style="font-size:13px">이 회사 인재상</b><p>도전 · 빠른 실행 · 주도적 문제 해결 <span style="color:var(--muted)">(공고 분석)</span></p></div>
+      <div class="prog"><span>질문 3 / 5</span><span>답변 1분 20초</span></div>
+      <div class="chat" style="margin-bottom:8px">
+        <div class="bub ai"><span class="who">AI 면접관</span>예상하지 못한 문제가 생겼을 때 어떻게 대처했는지 말씀해 주세요.</div>
+        <div class="bub me">먼저 원인을 꼼꼼히 확인하고, 팀원들과 자료를 비교해 본 뒤에 수정안을 정리했습니다.</div>
+      </div>
+      <div class="fb good"><b>좋았던 점</b>원인을 체계적으로 분석하는 과정이 잘 드러나요.</div>
+      <div class="fb fix"><b>보완할 점</b>'빠른 실행'을 중시하는 회사예요. <b style="display:inline;color:var(--text)">무엇을 결정했는지</b>를 먼저 말하면 신중함이 강점으로 전달돼요.</div>
+      <div class="card" style="padding:9px 12px"><div style="font-size:12px;font-weight:800;color:var(--navy);margin-bottom:3px">추천 답변 구조</div><div style="font-size:12.5px">결론(행동) → 근거(분석 과정) → 결과(수치)</div></div>
+      <div class="btns"><div class="btn sub">다시 답변</div><div class="btn">다음 질문</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 그림 9: 상담사 대시보드 -->
+<section class="fig" id="fig9"><div class="scr">
+  <div class="top"><h2>상담사 대시보드 · 커리어 사다리</h2><span>○○고용센터 · 2026.11.</span></div>
+  <div class="wrap">
+    <div>
+      <div class="kpis">
+        <div class="kpi"><span>집중지원 필요</span><b>12명</b></div>
+        <div class="kpi"><span>이번 주 재진단</span><b>34건</b></div>
+        <div class="kpi"><span>상담 요청</span><b>5건</b></div>
+      </div>
+      <table>
+        <tr><th>구직자</th><th>목표 직종</th><th>진단 유형</th><th>탈락</th><th>상담</th></tr>
+        <tr class="sel"><td>구직자 A12</td><td>기계설계</td><td><span class="t a">자격 격차형</span></td><td>서류 5회</td><td>요청</td></tr>
+        <tr><td>구직자 B07</td><td>마케팅</td><td><span class="t b">조직 적합형</span></td><td>면접 4회</td><td>—</td></tr>
+        <tr><td>구직자 C33</td><td>웹 개발</td><td><span class="t c">서류 표현형</span></td><td>서류 6회</td><td>요청</td></tr>
+        <tr><td>구직자 D21</td><td>회계</td><td><span class="t a">자격 격차형</span></td><td>서류 7회</td><td>—</td></tr>
+      </table>
+    </div>
+    <div class="side">
+      <h3>구직자 A12 · 진단 요약</h3>
+      <p>자격 격차형 · 지원 5곳 중 4곳이 관련 경력 요구 · 추천 공고 3곳 중 1곳 지원</p>
+      <h3 style="margin-top:10px">AI 상담 포인트</h3>
+      <ul>
+        <li>경력 요건이 반복 장벽 → 발판 공고 지원 독려</li>
+        <li>CAD 프로젝트를 서류에 역량으로 쓰지 못함</li>
+        <li>생산 아르바이트 경험을 품질·공정 역량으로 연결</li>
+      </ul>
+      <div class="btn">상담 일정 잡기</div>
+    </div>
+  </div>
+  <div class="mock">※ 모의데이터 화면(가명)</div>
+</div></section>
 
 </body>
 </html>

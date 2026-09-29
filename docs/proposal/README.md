@@ -1,7 +1,7 @@
 # 1차 기획안 PDF
 
 - 결과물: [career_ladder_proposal.pdf](career_ladder_proposal.pdf) (A4 10쪽)
-- 그림: [images/](images/) — fig1 서비스 컨셉, fig2 AI·규칙 역할 분담, fig3 서비스 흐름, fig4~6 화면 목업
+- 그림: [images/](images/) — fig1 서비스 컨셉, fig2 AI·규칙 역할 분담, fig3 서비스 흐름, fig7 화면 구성도, fig4~6·fig8~9 화면 목업
 
 ## 수정·재생성
 

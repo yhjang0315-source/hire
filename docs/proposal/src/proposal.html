@@ -67,6 +67,13 @@
   .phones img { width: 100%; }
   .phones .cap { margin-top: 1mm; }
 
+  .phones2 { display: grid; grid-template-columns: 1fr 2fr; gap: 5mm; align-items: start; margin: 1mm 0; }
+  .phones2 img { width: 100%; }
+  .tl-strip { display: flex; gap: 1mm; margin: 1mm 0 2mm; font-size: 7.8pt; }
+  .tl-strip div { background: var(--bg); border-radius: 1.5mm; padding: 1.4mm 2mm; line-height: 1.3; }
+  .tl-strip div b { display: block; color: var(--navy); }
+  .tl-strip .p0 { background: var(--navy); color: #fff; } .tl-strip .p0 b { color: #fff; }
+  .tl-strip .p1 { background: var(--blue-soft); }
   table.spec { font-size: 7.4pt; }
   table.spec td { padding: 1.3mm 1.6mm; }
   table.spec td.url { font-size: 6.8pt; word-break: break-all; }
@@ -95,7 +102,7 @@
       <tr><td class="k">핵심 기능</td><td>① 탈락 원인 진단(자격 격차형·서류 표현형·조직 적합형) ② 두 갈래 공고 추천(사다리 트랙·방향 전환 트랙) ③ 설득형 추천 카드(한마디·판단 근거·12개월 계획)</td></tr>
       <tr><td class="k">AI</td><td>생성형 AI 구조화 추출(경력·공고·인재상), 임베딩 기반 역량 매핑, 개인 맞춤 설명·계획 생성 + 규칙 기반 점수·진단</td></tr>
       <tr><td class="k">데이터</td><td>고용24 Open API(채용정보·직업정보·학과정보·국민내일배움카드 훈련과정), 고용행정통계(구인배수), 모의데이터(입사지원 이력)</td></tr>
-      <tr><td class="k">MVP</td><td>2주 · 1인 개발 · 화면 5종 · 시연 목표 직종 3~5개</td></tr>
+      <tr><td class="k">MVP</td><td>2주 · 1인 개발(AI 코딩 도구 활용) · 화면 12종(P0 핵심 기능 반드시 시연) · 전 직종 실시간 공고 · 페르소나 3명 시연</td></tr>
     </table>
     <div class="cover-meta"><span>참가 형태 <b>개인</b></span><span>작성 <b>2026. 10.</b></span></div>
   </div>
@@ -211,7 +218,7 @@
       <tr><td class="k">입사지원 이력, 프로필·성향</td><td>모의데이터</td><td>탈락 원인 진단 시연용 가상 페르소나(실제 개인정보 미포함)</td></tr>
     </table>
     <ul class="dots">
-      <li><b>공개 데이터</b>: 공공데이터포털·고용24 Open API 인증키 발급 후 호출. 시연 목표 직종 3~5개 범위의 공고·직업·훈련 데이터는 사전 수집·캐시해 시연 안정성 확보</li>
+      <li><b>공개 데이터</b>: 공공데이터포털·고용24 Open API 인증키 발급 후 호출. 직업정보(약 500개 직업)·훈련과정처럼 자주 쓰는 데이터는 사전 수집·캐시하고 공고는 실시간 조회해 호출 한도와 시연 안정성 확보</li>
       <li><b>비공개 데이터</b>: 고용24 입사지원 이력·직업심리검사 결과는 실제와 유사한 형태의 <b>모의데이터</b>로 대체, 확장 시 본인 동의 하에 연동</li>
       <li>상세 항목은 <b>붙임 1. 데이터 활용명세서</b> 참고</li>
     </ul>
@@ -248,76 +255,72 @@
   <div class="hdr"><span><b>커리어 사다리</b> · 1차 기획안</span><span>3. 실행계획</span></div>
   <div class="content">
     <h1>3. 실행계획</h1>
-    <h2>3-1. 개발 기간 내 구현 가능한 MVP 범위 (2주)</h2>
+    <h2>3-1. 개발 기간 내 구현 가능한 MVP 범위 (2주 · 1인 · AI 코딩 도구 활용)</h2>
+    <p>공개 데이터로 실제 작동하는 기능은 최대한 구현하고, 우선순위를 나눠 <b>P0는 반드시 시연</b>, P1은 구현 목표, P2는 여유 시 구현합니다.</p>
     <table class="t">
-      <tr><th style="width:50%">MVP 구현</th><th>확장 계획</th></tr>
-      <tr><td>입력 · 진단 결과 · 추천 결과 · 추천 카드 상세 · 지원 결과 입력 화면(5종)</td><td>고용24 입사지원 이력 자동 연동</td></tr>
-      <tr><td>탈락 원인 진단 규칙 엔진</td><td>고용24 직업심리검사(직업선호도·직업가치관) 결과 연동</td></tr>
-      <tr><td>사다리·방향 전환 트랙 추천과 지금 지원 1순위</td><td>재방문 시 역량 재평가·다음 단계 공고 알림</td></tr>
-      <tr><td>설득형 추천 카드(한마디·근거·12개월 계획)</td><td>반복 탈락자 고용센터 상담 연결</td></tr>
-      <tr><td>성향 자가진단 10문항, 역량 충족도 계산, 훈련과정 연결</td><td>면접 코칭 고도화</td></tr>
-      <tr><td>시연 목표 직종 3~5개</td><td>전 직종 확대, 잡케어·취업확률 구직컨설팅 결과 연동</td></tr>
+      <tr><th style="width:9%">구분</th><th>기능</th><th style="width:33%">활용 데이터</th></tr>
+      <tr><td class="k" rowspan="4">P0<br>반드시<br>시연</td><td>온보딩 · <b>AI 경력 인터뷰</b>(대화로 경력 입력 → 역량 태그)</td><td>학과정보, 직업정보 + 생성형 AI</td></tr>
+      <tr><td><b>탈락 원인 진단</b>(자격 격차형 · 서류 표현형 · 조직 적합형)</td><td>채용상세, 모의 지원 이력</td></tr>
+      <tr><td><b>사다리 추천</b>과 지금 지원 1순위(F·T·C·S 점수)</td><td>채용정보, 직업정보, 고용행정통계</td></tr>
+      <tr><td><b>설득형 추천 카드</b>(한마디 · 판단 근거 · 역량 충족도 · 12개월 계획)</td><td>계산값 + 생성형 AI</td></tr>
+      <tr><td class="k" rowspan="7">P1<br>구현<br>목표</td><td><b>전 직종</b> 실시간 공고 조회(직업정보 약 500개 직업 사전 캐시)</td><td>채용정보, 직업정보</td></tr>
+      <tr><td>공고 번호만 넣으면 지원 이력·요건 <b>자동 채움</b></td><td>채용상세(구인인증번호 조회)</td></tr>
+      <tr><td>공고·기업 상세(기업 정보, 직종·지역 <b>구인배수 차트</b>)</td><td>채용상세, 고용행정통계</td></tr>
+      <tr><td><b>서류 코칭</b>(서류 표현형: 공고 요구 역량에 맞춘 경험 문장 개선)</td><td>채용상세 + 생성형 AI</td></tr>
+      <tr><td><b>AI 모의면접</b>(조직 적합형: 회사 인재상 기반 질문·피드백)</td><td>채용상세 인재상 + 생성형 AI</td></tr>
+      <tr><td><b>훈련과정 추천</b>(부족 역량별, 취업률·만족도순)</td><td>국민내일배움카드 훈련과정</td></tr>
+      <tr><td><b>마이페이지</b>(지원 현황 보드 · 결과 입력 · 재진단 기록 · 알림) · 커리어 경로 타임라인</td><td>모의데이터, 계산값</td></tr>
+      <tr><td class="k" rowspan="2">P2<br>여유 시</td><td>공고 지도 보기, 목표 직종 2~3개 비교("어느 목표가 더 가까운가")</td><td>채용정보(근무지 주소), 직업정보</td></tr>
+      <tr><td><b>상담사 대시보드</b>(반복 탈락자 목록 · 진단 요약 · 상담 요청)</td><td>모의데이터</td></tr>
     </table>
+    <div class="tl-strip">
+      <div style="flex:2"><b>1~2일</b>데이터 연동·캐시</div>
+      <div style="flex:5" class="p0"><b>3~7일</b>P0 진단·추천·카드</div>
+      <div style="flex:4" class="p1"><b>8~11일</b>P1 코칭·면접·훈련·마이페이지</div>
+      <div style="flex:1.2"><b>12일</b>P2</div>
+      <div style="flex:2" class="p0"><b>13~14일</b>검증·시연</div>
+    </div>
+    <p class="note">· 시연: 페르소나 3명(자격 격차형·서류 표현형·조직 적합형)으로 진단 세 유형과 두 트랙을 모두 시연 · 확장 계획(해커톤 이후): 고용24 입사지원 이력·직업심리검사 결과 연동, 실제 상담 연계, 잡케어·취업확률 구직컨설팅 결과 연동</p>
     <h2>3-2. 서비스 흐름</h2>
     <div class="fig"><img src="../images/fig3.png" alt="서비스 흐름도"></div>
     <div class="cap"><b>[그림 3]</b> 서비스 흐름 — 데이터 · 처리(AI/규칙) · 사용자 흐름과 재진단 순환</div>
-    <table class="t">
-      <tr><th style="width:18%">단계</th><th>처리 내용</th></tr>
-      <tr><td class="k">① 역량 구조화 <span class="badge ai">AI</span></td><td>경력 서술·전공·자격 → 보유 역량, 지원 공고·추천 후보 공고 → 요구 역량·인재상</td></tr>
-      <tr><td class="k">② 탈락 원인 진단 <span class="badge rule">규칙</span></td><td>지원 공고별 F 평균과 서류/면접 탈락 비율로 진단 유형 판정</td></tr>
-      <tr><td class="k">③ 공고 점수 <span class="badge rule">규칙</span></td><td>고용24 공고별 F·T·C 계산, 구인배수·조건·마감일을 더해 S 산출</td></tr>
-      <tr><td class="k">④ 트랙·단계 분류 <span class="badge rule">규칙</span></td><td>진단 유형에 따라 트랙 선택, 사다리 트랙은 단계별 3~5개 공고 배정</td></tr>
-      <tr><td class="k">⑤ 추천 카드 <span class="badge ai">AI</span></td><td>계산값을 슬롯에 넣어 한마디·근거·계획 생성 → 금지 표현 필터 → 화면 출력</td></tr>
-    </table>
   </div>
   <div class="ftr">- 6 -</div>
 </div>
 
-<!-- 7쪽: 3-3 주요 화면 -->
+<!-- 7쪽: 3-2 주요 화면 구성 -->
 <div class="page">
   <div class="hdr"><span><b>커리어 사다리</b> · 1차 기획안</span><span>3. 실행계획</span></div>
   <div class="content">
-    <h2 style="margin-top:0">3-3. 주요 화면 구성</h2>
+    <h2 style="margin-top:0">3-2. 주요 화면 구성 — 구직자 11종 + 상담사 1종</h2>
+    <div class="fig"><img src="../images/fig7.png" alt="화면 구성도"></div>
+    <div class="cap"><b>[그림 4]</b> 화면 구성도 — 시작 → 진단 → 추천 → 준비·실행 → 관리, 결과 입력 시 재진단</div>
     <div class="phones">
-      <div><img src="../images/fig4.png" alt="입력 화면"><div class="cap"><b>[그림 4]</b> 입력 화면</div></div>
-      <div><img src="../images/fig5.png" alt="추천 결과 화면"><div class="cap"><b>[그림 5]</b> 진단·추천 결과 화면</div></div>
-      <div><img src="../images/fig6.png" alt="추천 카드 상세 화면"><div class="cap"><b>[그림 6]</b> 추천 카드 상세 화면</div></div>
+      <div><img src="../images/fig4.png" alt="입력 화면"><div class="cap"><b>[그림 5]</b> S1·S2 AI 경력 인터뷰·지원 이력</div></div>
+      <div><img src="../images/fig5.png" alt="추천 결과 화면"><div class="cap"><b>[그림 6]</b> S3·S4 진단·추천 결과</div></div>
+      <div><img src="../images/fig6.png" alt="추천 카드 상세 화면"><div class="cap"><b>[그림 7]</b> S5 추천 카드 상세</div></div>
     </div>
-    <p class="note" style="text-align:center;margin-bottom:2mm">※ 화면 속 회사명(A~H사)과 수치는 이해를 돕기 위한 예시</p>
-    <table class="t">
-      <tr><th style="width:18%">화면</th><th>구성</th></tr>
-      <tr><td class="k">① 입력</td><td>관심 직종, 전공·자격증, 경력·경험(자유 서술), 지원 이력 표(공고·결과), 희망 조건, 필요 시 성향 자가진단 10문항</td></tr>
-      <tr><td class="k">② 진단 결과</td><td>진단 유형 배지와 한 줄 근거(예: "지원한 5곳 중 4곳이 관련 경력 요구"), 이어질 트랙 안내</td></tr>
-      <tr><td class="k">③ 추천 결과</td><td>상단 <b>지금 지원 1순위</b> 카드(현재 적합도·목표 기여도), 아래 사다리 뷰(목표 · 경력 발판 · 역량 키우기 · 즉시 적합)</td></tr>
-      <tr><td class="k">④ 추천 카드 상세</td><td>A. 한마디 · B. 왜 이렇게 판단했나요?(근거별 출처 표시) · 목표 역량 충족도(지금 → 1년 후 예상) · C. 이후 계획 타임라인 · 플랜 B</td></tr>
-      <tr><td class="k">⑤ 지원 결과 입력</td><td>고용24 공고로 이동해 지원 → 결과(서류탈락·면접탈락·합격) 입력 → 재진단</td></tr>
-    </table>
   </div>
   <div class="ftr">- 7 -</div>
 </div>
 
-<!-- 8쪽: 3-4 일정, 3-5 팀, 4. 독창성 -->
+<!-- 8쪽: 화면(계속), 3-3 팀, 4-1 -->
 <div class="page">
   <div class="hdr"><span><b>커리어 사다리</b> · 1차 기획안</span><span>3. 실행계획 · 4. 독창성·차별성</span></div>
   <div class="content">
-    <h2 style="margin-top:0">3-4. 개발 일정 (2주)</h2>
-    <table class="t">
-      <tr><th style="width:16%">기간</th><th>작업</th><th style="width:26%">산출물</th></tr>
-      <tr><td class="k">1~2일</td><td>Open API 연동(채용·직업·학과·훈련·EIS), 시연 직종 데이터 수집·캐시</td><td>데이터 수집 모듈</td></tr>
-      <tr><td class="k">3~5일</td><td>F·T·C·S 점수, 진단 규칙, 단계 분류</td><td>진단·추천 엔진</td></tr>
-      <tr><td class="k">6~8일</td><td>역량 구조화, 공고·인재상 추출, 추천 카드 생성, 금지 표현 필터</td><td>AI 모듈</td></tr>
-      <tr><td class="k">9~11일</td><td>화면 5종, 성향 자가진단</td><td>웹 MVP(모바일 우선)</td></tr>
-      <tr><td class="k">12~13일</td><td>페르소나 A·B 시나리오 검증, 기준값 조정</td><td>검증 결과</td></tr>
-      <tr><td class="k">14일</td><td>시연 영상·발표자료</td><td>2차 기능심사 자료</td></tr>
-    </table>
-    <h2>3-5. 팀 구성 및 역할 분담</h2>
+    <div class="phones2">
+      <div><img src="../images/fig8.png" alt="AI 모의면접 화면"><div class="cap"><b>[그림 8]</b> S8 AI 모의면접</div></div>
+      <div><img src="../images/fig9.png" alt="상담사 대시보드"><div class="cap"><b>[그림 9]</b> S12 상담사 대시보드(모의데이터)</div>
+        <p class="note" style="margin-top:3mm">· 모의면접은 공고에서 추출한 인재상으로 질문을 만들고, 성향을 약점이 아닌 강점으로 전달하는 답변 구조를 제안<br>· 상담사 대시보드는 반복 탈락자를 모아 보여줘 고용센터가 <b>집중지원형 구직자</b>에 먼저 닿도록 지원<br>※ 화면 속 회사명(A~J사)과 수치는 이해를 돕기 위한 예시</p>
+      </div>
+    </div>
+    <h2>3-3. 팀 구성 및 역할 분담</h2>
     <table class="t">
       <tr><th style="width:16%">구성</th><th>역할</th></tr>
-      <tr><td class="k">개인(1인)</td><td>서비스 기획, 데이터 분석·API 연동, 진단·추천 로직 개발, AI 프롬프트 설계, 화면 개발, 시연</td></tr>
+      <tr><td class="k">개인(1인)</td><td>서비스 기획, 데이터 분석·API 연동, 진단·추천 로직 개발, AI 프롬프트 설계, 화면 개발, 시연 — <b>AI 코딩 도구</b>로 구현 속도를 확보하고, 선정 후 제공되는 생성형 AI 플랫폼 활용</td></tr>
     </table>
-    <p class="note">1인 개발에 맞춰 MVP를 핵심 기능 중심으로 한정하고, 선정 후 제공되는 생성형 AI 플랫폼과 AI 코딩 도구로 개발 속도를 확보합니다.</p>
 
-    <h1 style="margin-top:5mm">4. 독창성·차별성</h1>
+    <h1 style="margin-top:4mm">4. 독창성·차별성</h1>
     <h2>4-1. 현행 고용24 및 민간 서비스 대비 차별성</h2>
     <table class="t">
       <tr><th style="width:14%">구분</th><th>고용24 잡케어</th><th>고용24 취업확률<br>구직컨설팅</th><th>민간<br>(사람인 AI 코칭 등)</th><th class="ours">커리어 사다리</th></tr>
@@ -327,31 +330,31 @@
       <tr><td class="k">불합격 이력</td><td>미반영</td><td>미반영</td><td>미반영</td><td class="ours"><b>탈락 원인 진단 → 처방 분기</b></td></tr>
       <tr><td class="k">설명 방식</td><td>추천 결과</td><td>확률·보완점</td><td>첨삭</td><td class="ours"><b>한마디·근거·12개월 계획</b></td></tr>
     </table>
-    <h2>4-2. 아이디어의 참신성</h2>
-    <div class="cards c3">
-      <div class="card blue"><h4>일자리로 역량을 채운다</h4><p>부족한 역량을 훈련으로만 채우지 않고, 경력을 쌓을 발판 공고를 목표와 연결해 제시</p></div>
-      <div class="card teal"><h4>불합격을 데이터로</h4><p>같은 탈락도 원인에 따라 처방이 다름 — 자격 격차면 사다리, 적합성 문제면 방향 전환</p></div>
-      <div class="card orange"><h4>눈을 낮추라고 하지 않는 추천</h4><p>판단 근거와 이후 계획을 함께 보여줘 추천을 납득하고 실행하게 함</p></div>
-    </div>
   </div>
   <div class="ftr">- 8 -</div>
 </div>
 
-<!-- 9쪽: 5. 기대효과 -->
+<!-- 9쪽: 4-2, 5. 기대효과 -->
 <div class="page">
-  <div class="hdr"><span><b>커리어 사다리</b> · 1차 기획안</span><span>5. 기대효과</span></div>
+  <div class="hdr"><span><b>커리어 사다리</b> · 1차 기획안</span><span>4. 독창성·차별성 · 5. 기대효과</span></div>
   <div class="content">
-    <h1>5. 기대효과</h1>
+    <h2 style="margin-top:0">4-2. 아이디어의 참신성</h2>
+    <div class="cards c3">
+      <div class="card blue"><h4>일자리로 역량을 채운다</h4><p>부족한 역량을 훈련으로만 채우지 않고, 경력을 쌓을 발판 공고를 목표와 연결해 제시</p></div>
+      <div class="card teal"><h4>불합격을 데이터로</h4><p>같은 탈락도 원인에 따라 처방이 다름 — 자격 격차면 사다리, 표현·적합성 문제면 서류 코칭·모의면접</p></div>
+      <div class="card orange"><h4>눈을 낮추라고 하지 않는 추천</h4><p>판단 근거와 이후 계획을 함께 보여줘 추천을 납득하고 실행하게 함</p></div>
+    </div>
+
+    <h1 style="margin-top:4mm">5. 기대효과</h1>
     <h2>5-1. As-Is / To-Be 기준 국민 체감 효과</h2>
     <table class="t">
       <tr><th style="width:15%">구분</th><th>As-Is</th><th class="ours">To-Be (커리어 사다리)</th></tr>
       <tr><td class="k">공고 탐색</td><td>목표 직종 이름으로만 검색, 경력 요구 공고에 반복 지원</td><td class="ours">목표로 이어지는 발판·역량 공고까지 단계별로 확인하고 <b>지금 지원할 1곳</b>을 선택</td></tr>
-      <tr><td class="k">탈락 대응</td><td>원인을 모른 채 같은 방식으로 반복 지원</td><td class="ours">탈락 패턴 진단 → <b>원인별 처방</b>(사다리 / 서류 / 면접·회사 선택)</td></tr>
+      <tr><td class="k">탈락 대응</td><td>원인을 모른 채 같은 방식으로 반복 지원</td><td class="ours">탈락 패턴 진단 → <b>원인별 처방</b>(사다리 / 서류 코칭 / 모의면접·회사 선택)</td></tr>
       <tr><td class="k">추천 수용</td><td>이유 없는 추천에 "눈을 낮추라"는 거부감</td><td class="ours">한마디·판단 근거·계획으로 <b>납득하고 실행</b></td></tr>
       <tr><td class="k">입사 이후</td><td>첫 직장 이후 목표까지의 경력 관리 단절</td><td class="ours">12개월 계획, 역량 충족도 재점검으로 <b>목표 재도전</b></td></tr>
-      <tr><td class="k">상담 접근</td><td>센터를 찾아가야 개인 맞춤 상담</td><td class="ours">언제든 셀프 진단, 필요 시 상담 연결</td></tr>
+      <tr><td class="k">상담 접근</td><td>센터를 찾아가야 개인 맞춤 상담</td><td class="ours">언제든 셀프 진단, 반복 탈락 시 상담사 대시보드로 <b>먼저 연결</b></td></tr>
     </table>
-    <p><b>성과 지표(안)</b></p>
     <div class="cards c4">
       <div class="card"><h4>지원 전환율</h4><p>추천 공고 중 실제 지원한 비율</p></div>
       <div class="card"><h4>서류 통과율 변화</h4><p>이용 전후 지원 대비 서류 통과율</p></div>
@@ -362,7 +365,7 @@
     <h2>5-2. 고용서비스 정책 목표와의 부합성</h2>
     <table class="t">
       <tr><th style="width:26%">정책 방향</th><th>부합 내용</th></tr>
-      <tr><td class="k">국가 고용서비스 혁신방안<br>(2026.8)</td><td>고용24를 '나만의 AI 고용센터'로 개편하고 구직자를 자기주도형·집중지원형으로 나누는 방향과 일치. <b>자기주도형 구직자의 셀프 서비스</b>를 맡고, 반복 탈락자는 상담으로 연결해 상담 인력이 집중지원형에 집중하도록 지원</td></tr>
+      <tr><td class="k">국가 고용서비스 혁신방안<br>(2026.8)</td><td>고용24를 '나만의 AI 고용센터'로 개편하고 구직자를 자기주도형·집중지원형으로 나누는 방향과 일치. <b>자기주도형 구직자의 셀프 서비스</b>를 맡고, 상담사 대시보드로 반복 탈락자를 연결해 상담 인력이 집중지원형에 집중하도록 지원</td></tr>
       <tr><td class="k">고용24 AI 서비스 고도화</td><td>잡케어·취업확률 기반 구직컨설팅 결과 화면에 '커리어 사다리' 탭으로 연동 → "맞는 직업 → 부족 역량 → <b>지금 지원할 공고</b>"까지 이어지는 흐름 완성</td></tr>
       <tr><td class="k">청년 고용 지원</td><td>'중고 신입' 선호로 커지는 신입의 진입 장벽을 공공 고용서비스가 직접 완화</td></tr>
       <tr><td class="k">훈련–취업 연계</td><td>부족 역량에 맞춘 국민내일배움카드 훈련과정을 입사 후 계획에 연결해 훈련 활용과 경력 성장을 함께 지원</td></tr>

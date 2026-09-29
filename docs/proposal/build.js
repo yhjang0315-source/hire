@@ -18,7 +18,7 @@ const OUT_PDF = path.join(ROOT, "career_ladder_proposal.pdf");
 
   await page.goto(url("figures.html"));
   await page.evaluate(() => document.fonts.ready);
-  for (const id of ["fig1", "fig2", "fig3", "fig4", "fig5", "fig6"]) {
+  for (const id of ["fig1", "fig2", "fig3", "fig4", "fig5", "fig6", "fig7", "fig8", "fig9"]) {
     await page.locator("#" + id).screenshot({ path: path.join(ROOT, "images", id + ".png") });
   }
   console.log("figures ok");
