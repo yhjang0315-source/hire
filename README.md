@@ -30,6 +30,7 @@
 | [docs/idea_analysis.xlsx](docs/idea_analysis.xlsx) | 고용24 현황·문제점, 기존 서비스, 초기 아이디어 후보 비교·평가 |
 | [docs/service_design.md](docs/service_design.md) | 선정 아이디어 서비스 설계 (입력, 진단 규칙, 점수, 추천 카드, 데이터, MVP 범위) |
 | [docs/data_spec.md](docs/data_spec.md) | 데이터 활용명세서 (신청서 입력용 텍스트 포함) |
+| [docs/proposal/career_ladder_proposal.pdf](docs/proposal/career_ladder_proposal.pdf) | **1차 기획안 PDF (제출용, 10쪽)** — 소스와 빌드 방법은 [docs/proposal/](docs/proposal/) |
 | [docs/proposal_draft.md](docs/proposal_draft.md) | 1차 기획안 초안 (공모전 제시 목차 기준) |
 | [docs/proposal_outline.md](docs/proposal_outline.md) | 기획안 쪽 배분과 이미지 목록 |
 
@@ -40,6 +41,7 @@
 - [x] 기획안 목차 v0.1
 - [x] 데이터 활용명세서
 - [x] 1차 기획안 초안 v0.1
-- [ ] 근거 통계 확보, 데이터 항목 확인
-- [ ] 이미지 제작, PDF 변환 (마감 10.13)
+- [x] 이미지 제작, PDF 변환 v1
+- [ ] 근거 통계 원문 확인, 데이터 항목 API 명세 대조
+- [ ] 최종 검토 후 제출 (마감 10.13)
 - [ ] (선정 시) MVP 개발
