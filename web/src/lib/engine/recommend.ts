@@ -138,18 +138,38 @@ export function coverageFor(profile: Profile, rec: Recommendation, sp: ScoredPos
   return coverage(profile.competencies, target, data.skillMap, sp?.occupation);
 }
 
-/** 부족 항목을 채워주는 훈련과정(지역 우선, 6개월 취업률 순) */
-export function matchTrainings(missingItems: string[], profile: Profile, data: Dataset, limit = 3): TrainingCourse[] {
-  const missing = new Set(missingItems);
+/**
+ * 부족 역량을 채워주는 훈련과정.
+ * 목표 공고에서 못 갖춘 우대 태그(tags)를 먼저 보고, 목표 직업 핵심 항목(items) 중 부족한 것을 보조로 본다.
+ * 과정 내용의 절반 이상이 부족 항목과 겹치거나 부족 태그를 직접 다루는 과정만 추천한다.
+ */
+export function matchTrainings(
+  needs: { items: string[]; tags: string[] },
+  profile: Profile,
+  data: Dataset,
+  limit = 3,
+): TrainingCourse[] {
+  const missingItems = new Set(needs.items);
+  const missingTags = new Set(needs.tags.filter((t) => !profile.competencies.includes(t)));
   return data.trainings
-    .map((t) => ({ t, hit: [...itemsOf(t.competencies, data.skillMap)].filter((i) => missing.has(i)).length }))
-    .filter((x) => x.hit > 0)
+    .map((t) => {
+      const items = [...itemsOf(t.competencies, data.skillMap)];
+      const itemHit = items.filter((i) => missingItems.has(i)).length;
+      const tagHit = t.competencies.filter((c) => missingTags.has(c)).length;
+      return { t, score: tagHit * 2 + itemHit, relevant: tagHit > 0 || (items.length > 0 && itemHit / items.length >= 0.5) };
+    })
+    .filter((x) => x.relevant && x.score > 0)
     .sort(
       (a, b) =>
-        b.hit - a.hit ||
+        b.score - a.score ||
         Number(b.t.region === profile.region) - Number(a.t.region === profile.region) ||
         (b.t.employmentRate6 ?? 0) - (a.t.employmentRate6 ?? 0),
     )
     .slice(0, limit)
     .map((x) => x.t);
+}
+
+/** 목표 공고들에서 못 갖춘 우대 태그 */
+export function missingTargetTags(rec: Recommendation): string[] {
+  return [...new Set([...rec.tiers.target, ...rec.redirect].flatMap((sp) => sp.fit.missing))];
 }

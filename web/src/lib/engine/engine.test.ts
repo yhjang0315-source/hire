@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { DEMO_TODAY, getMockDataset, getPersonas } from "@/data";
 import type { Persona } from "@/lib/types";
-import { coverageFor, currentFit, diagnose, matchTrainings, recommend } from "@/lib/engine";
+import { coverageFor, currentFit, diagnose, matchTrainings, missingTargetTags, recommend } from "@/lib/engine";
 
 const data = getMockDataset();
 const personas = getPersonas();
@@ -113,10 +113,12 @@ describe("역량 충족도·훈련", () => {
     expect(cov.afterYear!).toBeGreaterThan(cov.now);
   });
 
-  it("부족 항목을 채워주는 훈련과정을 찾는다", () => {
+  it("목표 공고에서 부족한 우대 역량(3D CAD)을 채우는 훈련과정을 먼저 추천하고, 무관한 과정은 뺀다", () => {
     const p = byId("P-A12");
     const rec = run(p);
     const cov = coverageFor(p.profile, rec, rec.best, data)!;
-    expect(matchTrainings(cov.missing, p.profile, data).length).toBeGreaterThan(0);
+    const ids = matchTrainings({ items: cov.missing, tags: missingTargetTags(rec) }, p.profile, data).map((t) => t.id);
+    expect(ids[0]).toBe("MOCK-T01");
+    expect(ids).not.toContain("MOCK-T05");
   });
 });
