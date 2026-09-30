@@ -1,0 +1,56 @@
+{
+  "_note": "모의데이터 — 상담사 대시보드용 가명 구직자. profile이 없으면 같은 id의 페르소나를 쓴다. 상담 요청·재진단일은 가상",
+  "items": [
+    { "id": "P-A12", "counselRequested": true, "lastDiagnosedAt": "2026-11-14" },
+    { "id": "P-B07", "counselRequested": false, "lastDiagnosedAt": "2026-11-12" },
+    { "id": "P-C33", "counselRequested": true, "lastDiagnosedAt": "2026-11-10" },
+    {
+      "id": "S-D21", "counselRequested": false, "lastDiagnosedAt": "2026-11-13",
+      "profile": { "id": "S-D21", "alias": "구직자 D21", "targetOccupationCodes": ["1511"], "major": "기계", "education": "전문대졸", "certificates": [], "careerYears": 0, "experienceText": "기계과 졸업 작품으로 컨베이어 부품을 설계했어요.", "competencies": ["도면 작성", "2D CAD"], "region": "경기", "minSalary": 3000, "searchMonths": 3, "traits": { "pace": 0, "lead": 0, "change": 0, "scope": 1, "work": 0 } },
+      "applications": [
+        { "postingId": "MOCK-A01", "appliedAt": "2026-09-20", "result": "서류탈락" },
+        { "postingId": "MOCK-A02", "appliedAt": "2026-09-25", "result": "서류탈락" },
+        { "postingId": "MOCK-A03", "appliedAt": "2026-10-01", "result": "서류탈락" },
+        { "postingId": "MOCK-B01", "appliedAt": "2026-10-06", "result": "서류탈락" },
+        { "postingId": "MOCK-B02", "appliedAt": "2026-10-10", "result": "서류탈락" },
+        { "postingId": "MOCK-B03", "appliedAt": "2026-10-15", "result": "서류탈락" },
+        { "postingId": "MOCK-A04", "appliedAt": "2026-10-20", "result": "서류탈락" }
+      ]
+    },
+    {
+      "id": "S-E05", "counselRequested": true, "lastDiagnosedAt": "2026-11-15",
+      "profile": { "id": "S-E05", "alias": "구직자 E05", "targetOccupationCodes": ["1332"], "major": "컴퓨터", "education": "대졸", "certificates": ["정보처리기사"], "careerYears": 0, "experienceText": "부트캠프에서 React로 쇼핑몰 화면을 만들었어요.", "competencies": ["React", "JavaScript", "TypeScript", "Git"], "region": "서울", "minSalary": 3200, "searchMonths": 3, "traits": { "pace": 1, "lead": 0, "change": 1, "scope": 0, "work": 1 } },
+      "applications": [
+        { "postingId": "MOCK-C01", "appliedAt": "2026-10-01", "result": "서류탈락" },
+        { "postingId": "MOCK-C03", "appliedAt": "2026-10-07", "result": "서류탈락" },
+        { "postingId": "MOCK-C05", "appliedAt": "2026-10-14", "result": "서류탈락" },
+        { "postingId": "MOCK-C04", "appliedAt": "2026-10-18", "result": "서류탈락" }
+      ]
+    },
+    {
+      "id": "S-G02", "counselRequested": true, "lastDiagnosedAt": "2026-11-11",
+      "profile": { "id": "S-G02", "alias": "구직자 G02", "targetOccupationCodes": ["1512"], "major": "기계", "education": "대졸", "certificates": ["일반기계기사"], "careerYears": 0, "experienceText": "캡스톤 디자인에서 소형 가전 기구를 설계하고 시제품을 만들었어요.", "competencies": ["3D CAD", "도면 작성", "솔리드웍스", "설계 검토"], "region": "경기", "minSalary": 3300, "searchMonths": 6, "traits": { "pace": -2, "lead": -1, "change": -2, "scope": 1, "work": 0 } },
+      "applications": [
+        { "postingId": "MOCK-B02", "appliedAt": "2026-10-03", "result": "면접탈락" },
+        { "postingId": "MOCK-B01", "appliedAt": "2026-10-09", "result": "면접탈락" },
+        { "postingId": "MOCK-B03", "appliedAt": "2026-10-16", "result": "면접탈락" }
+      ]
+    },
+    {
+      "id": "S-F18", "counselRequested": false, "lastDiagnosedAt": "2026-11-02",
+      "profile": { "id": "S-F18", "alias": "구직자 F18", "targetOccupationCodes": ["8111"], "major": "화학", "education": "전문대졸", "certificates": [], "careerYears": 0, "experienceText": "식품공장 포장 라인에서 1년 아르바이트를 했어요.", "competencies": ["생산 공정 이해", "품질 기준 준수"], "region": "경기", "minSalary": 2800, "searchMonths": 1, "traits": { "pace": 0, "lead": 0, "change": 0, "scope": 1, "work": 0 } },
+      "applications": [{ "postingId": "MOCK-H01", "appliedAt": "2026-10-28", "result": "대기" }]
+    },
+    {
+      "id": "S-H40", "counselRequested": false, "lastDiagnosedAt": "2026-11-09",
+      "profile": { "id": "S-H40", "alias": "구직자 H40", "targetOccupationCodes": ["1511"], "major": "기계", "education": "대졸", "certificates": ["일반기계기사"], "careerYears": 0, "experienceText": "설계 동아리에서 드론 프레임을 모델링했어요.", "competencies": ["3D CAD", "도면 작성"], "region": "경기", "minSalary": 3400, "searchMonths": 3, "traits": { "pace": 0, "lead": -1, "change": 0, "scope": 0, "work": 0 } },
+      "applications": [
+        { "postingId": "MOCK-A01", "appliedAt": "2026-09-22", "result": "서류탈락" },
+        { "postingId": "MOCK-A04", "appliedAt": "2026-09-30", "result": "서류탈락" },
+        { "postingId": "MOCK-B05", "appliedAt": "2026-10-08", "result": "면접탈락" },
+        { "postingId": "MOCK-V01", "appliedAt": "2026-10-15", "result": "면접탈락" },
+        { "postingId": "MOCK-A02", "appliedAt": "2026-10-21", "result": "서류탈락" }
+      ]
+    }
+  ]
+}

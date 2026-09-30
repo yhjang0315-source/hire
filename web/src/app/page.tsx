@@ -39,6 +39,9 @@ export default function Home() {
       <div className="mt-5">
         <ButtonLink href="/input">내 상황 직접 입력하기</ButtonLink>
       </div>
+      <Link href="/counselor" className="mt-3 block text-center text-xs font-bold text-slate-500 underline underline-offset-2">
+        상담사 화면 보기(고용센터용 대시보드)
+      </Link>
     </>
   );
 }

@@ -1,12 +1,13 @@
 // 페이지 공통: URL에서 입력 상태를 찾고 엔진을 돌린다(서버 전용)
 import "server-only";
 import type { Posting } from "@/lib/types";
-import { DEMO_TODAY, getPersonas } from "@/data";
+import { DEMO_TODAY, getPersonas, getSeekers } from "@/data";
 import { getDataset } from "@/data/cache";
 import { compareOccupations, coverageFor, currentFit, defaultCompareCodes, demandComparison, matchTrainings, missingTargetTags, recommend, trainingHits, type Recommendation, type ScoredPosting } from "@/lib/engine";
 import { getCardWriter, type CardText } from "@/lib/card/writer";
 import { decodeState, encodeState, type InputState } from "@/lib/state";
 import { getDocCoach, type DocCoaching } from "@/lib/coach/document";
+import { getCounselWriter, summarizeSeeker } from "@/lib/counsel";
 
 export type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 
@@ -149,4 +150,27 @@ export function buildCompare(state: InputState, codes: string[]) {
   const selected = [...new Set(valid.length ? valid : defaultCompareCodes(state.profile, rec))];
   const occupations = selected.map((c) => data.occupations.find((o) => o.code === c)!);
   return { rows: compareOccupations(state.profile, occupations, data, today()), selected: selected.slice(0, 3), all: data.occupations, rec };
+}
+
+/** 상담사 대시보드(P2): 가명 구직자 전체를 진단하고, 고른 구직자의 상담 포인트를 만든다 */
+export function buildCounselor() {
+  const data = getDataset();
+  const summaries = getSeekers().map((s) => summarizeSeeker(s, data, DEMO_TODAY));
+  return {
+    summaries,
+    pointsOf: (id: string) => {
+      const s = summaries.find((x) => x.seeker.id === id);
+      return s ? getCounselWriter().points(s, data) : [];
+    },
+    /** 구직자 화면으로 가는 쿼리 — 페르소나는 id, 나머지는 입력 상태 인코딩 */
+    queryOf: (id: string) => {
+      const s = summaries.find((x) => x.seeker.id === id)!.seeker;
+      return getPersonas().some((p) => p.profile.id === id) ? `persona=${id}` : `s=${encodeState({ profile: s.profile, applications: s.applications })}`;
+    },
+    kpi: {
+      focus: summaries.filter((s) => s.focus).length,
+      recent: summaries.filter((s) => s.recent).length,
+      requested: summaries.filter((s) => s.seeker.counselRequested).length,
+    },
+  };
 }
