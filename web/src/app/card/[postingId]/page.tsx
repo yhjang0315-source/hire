@@ -97,6 +97,9 @@ export default async function CardPage({
                 {t.employmentRate6 != null && <Badge tone="teal">취업률 {t.employmentRate6}%</Badge>}
               </div>
             ))}
+            <Link href={`/training?${resolved.query}`} className="mt-2 block text-right text-xs font-bold text-brand">
+              훈련과정 전체 보기 →
+            </Link>
           </Card>
         </>
       )}

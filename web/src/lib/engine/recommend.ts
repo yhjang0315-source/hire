@@ -169,6 +169,19 @@ export function matchTrainings(
     .map((x) => x.t);
 }
 
+/** 훈련과정이 채워주는 부족 태그·항목 */
+export function trainingHits(
+  t: TrainingCourse,
+  needs: { items: string[]; tags: string[] },
+  data: Dataset,
+): { tags: string[]; items: string[] } {
+  const items = new Set(needs.items);
+  return {
+    tags: t.competencies.filter((c) => needs.tags.includes(c)),
+    items: [...itemsOf(t.competencies, data.skillMap)].filter((i) => items.has(i)),
+  };
+}
+
 /** 목표 공고들에서 못 갖춘 우대 태그 */
 export function missingTargetTags(rec: Recommendation): string[] {
   return [...new Set([...rec.tiers.target, ...rec.redirect].flatMap((sp) => sp.fit.missing))];

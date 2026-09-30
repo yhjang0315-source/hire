@@ -3,7 +3,7 @@ import "server-only";
 import type { Posting } from "@/lib/types";
 import { DEMO_TODAY, getPersonas } from "@/data";
 import { getDataset } from "@/data/cache";
-import { coverageFor, currentFit, matchTrainings, missingTargetTags, recommend, type Recommendation, type ScoredPosting } from "@/lib/engine";
+import { coverageFor, currentFit, matchTrainings, missingTargetTags, recommend, trainingHits, type Recommendation, type ScoredPosting } from "@/lib/engine";
 import { getCardWriter, type CardText } from "@/lib/card/writer";
 import { decodeState, encodeState, type InputState } from "@/lib/state";
 import { getDocCoach, type DocCoaching } from "@/lib/coach/document";
@@ -53,7 +53,7 @@ export async function buildCard(state: InputState, postingId: string): Promise<C
   const sp = pool.find((x) => x.posting.id === postingId);
   if (!sp) return null;
   const coverage = coverageFor(state.profile, rec, sp, data);
-  const trainings = matchTrainings({ items: coverage?.missing ?? [], tags: missingTargetTags(rec) }, state.profile, data);
+  const trainings = matchTrainings(trainingNeeds(state, rec, coverage?.missing ?? []), state.profile, data);
   const planB =
     pool
       .filter((x) => x.posting.id !== sp.posting.id && x.fit.score >= 60 && (x.tier === sp.tier || x.tier === "growing" || x.tier === "stepping"))
@@ -73,4 +73,26 @@ export async function buildDocCoaching(
   const fit = currentFit(state.profile, posting, data.skillMap);
   const coaching = await getDocCoach().coach({ profile: state.profile, posting, fit, skillMap: data.skillMap });
   return { posting, coaching, fitScore: fit.score };
+}
+
+/** 채울 역량: 목표 직업의 부족 항목 + 목표 공고·지원했던 공고의 우대 조건 중 없는 것 */
+export function trainingNeeds(state: InputState, rec: Recommendation, missingItems: string[]) {
+  const data = getDataset();
+  const applied = state.applications
+    .map((a) => data.postings.find((p) => p.id === a.postingId))
+    .filter((p): p is Posting => !!p)
+    .flatMap((p) => currentFit(state.profile, p, data.skillMap).missing);
+  const tags = [...new Set([...missingTargetTags(rec), ...applied])].filter((t) => !state.profile.competencies.includes(t));
+  return { items: missingItems, tags };
+}
+
+/** 훈련과정 추천(S9): 목표까지 부족한 역량과 이를 채우는 과정 */
+export function buildTrainingPlan(state: InputState, regionOnly: boolean) {
+  const data = getDataset();
+  const rec = run(state);
+  const coverage = coverageFor(state.profile, rec, rec.best, data);
+  const needs = trainingNeeds(state, rec, coverage?.missing ?? []);
+  const pool = regionOnly ? { ...data, trainings: data.trainings.filter((t) => t.region === state.profile.region) } : data;
+  const courses = matchTrainings(needs, state.profile, pool, 10).map((t) => ({ course: t, hits: trainingHits(t, needs, data) }));
+  return { rec, coverage, needs, courses };
 }

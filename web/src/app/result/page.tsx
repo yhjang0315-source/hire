@@ -125,7 +125,12 @@ export default async function ResultPage({ searchParams }: { searchParams: Searc
         </Section>
       )}
 
-      <div className="mt-4 grid grid-cols-2 gap-2">
+      <div className="mt-4">
+        <ButtonLink href={`/training?${query}`} variant="outline">
+          부족 역량 훈련과정 보기
+        </ButtonLink>
+      </div>
+      <div className="mt-2 grid grid-cols-2 gap-2">
         <ButtonLink href={`/input?${query}`} variant="outline">
           결과 입력·수정
         </ButtonLink>
