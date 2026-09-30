@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { DEMO_TODAY, getMockDataset, getPersonas } from "@/data";
 import type { Persona } from "@/lib/types";
-import { coverageFor, currentFit, diagnose, matchTrainings, missingTargetTags, recommend } from "@/lib/engine";
+import { coverageFor, currentFit, diagnose, matchTrainings, missingTargetTags, recommend, trainingHits } from "@/lib/engine";
 
 const data = getMockDataset();
 const personas = getPersonas();
@@ -120,5 +120,14 @@ describe("역량 충족도·훈련", () => {
     const ids = matchTrainings({ items: cov.missing, tags: missingTargetTags(rec) }, p.profile, data).map((t) => t.id);
     expect(ids[0]).toBe("MOCK-T01");
     expect(ids).not.toContain("MOCK-T05");
+  });
+
+  it("훈련과정이 채워주는 부족 역량을 설명한다", () => {
+    const p = byId("P-A12");
+    const rec = run(p);
+    const cov = coverageFor(p.profile, rec, rec.best, data)!;
+    const needs = { items: cov.missing, tags: missingTargetTags(rec) };
+    const t01 = data.trainings.find((t) => t.id === "MOCK-T01")!;
+    expect(trainingHits(t01, needs, data).tags).toContain("3D CAD");
   });
 });
