@@ -3,7 +3,7 @@ import "server-only";
 import type { Posting } from "@/lib/types";
 import { DEMO_TODAY, getPersonas } from "@/data";
 import { getDataset } from "@/data/cache";
-import { coverageFor, currentFit, demandComparison, matchTrainings, missingTargetTags, recommend, trainingHits, type Recommendation, type ScoredPosting } from "@/lib/engine";
+import { compareOccupations, coverageFor, currentFit, defaultCompareCodes, demandComparison, matchTrainings, missingTargetTags, recommend, trainingHits, type Recommendation, type ScoredPosting } from "@/lib/engine";
 import { getCardWriter, type CardText } from "@/lib/card/writer";
 import { decodeState, encodeState, type InputState } from "@/lib/state";
 import { getDocCoach, type DocCoaching } from "@/lib/coach/document";
@@ -139,4 +139,14 @@ export function buildPostingDetail(state: InputState, postingId: string) {
     rec.targets.map((t) => t.classCode.middle),
   );
   return { posting, occupation: occ, fit, scored, demand, rec };
+}
+
+/** 목표 직종 비교(P2): codes가 없으면 목표 직종 + 추천 공고 직종 */
+export function buildCompare(state: InputState, codes: string[]) {
+  const data = getDataset();
+  const rec = run(state);
+  const valid = codes.filter((c) => data.occupations.some((o) => o.code === c));
+  const selected = [...new Set(valid.length ? valid : defaultCompareCodes(state.profile, rec))];
+  const occupations = selected.map((c) => data.occupations.find((o) => o.code === c)!);
+  return { rows: compareOccupations(state.profile, occupations, data, today()), selected: selected.slice(0, 3), all: data.occupations, rec };
 }

@@ -5,3 +5,4 @@ export * from "./diagnosis";
 export * from "./recommend";
 export * from "./path";
 export * from "./demand";
+export * from "./compare";

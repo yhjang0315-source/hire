@@ -143,6 +143,9 @@ export default async function ResultPage({ searchParams }: { searchParams: Searc
         <ButtonLink href={`/map?${query}`} variant="outline">
           지도로 보기
         </ButtonLink>
+        <ButtonLink href={`/compare?${query}`} variant="outline">
+          직종 비교
+        </ButtonLink>
         <ButtonLink href={`/training?${query}`} variant="outline">
           훈련과정
         </ButtonLink>
