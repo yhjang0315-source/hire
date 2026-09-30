@@ -23,7 +23,7 @@ export default async function PathPage({ searchParams }: { searchParams: SearchP
 
   return (
     <>
-      <Title sub={`목표 ${target}까지 · 역량 충족도는 직업정보 핵심 역량 기준 예상치`}>커리어 경로</Title>
+      <Title sub={`목표 ${target}까지 · 역량 충족도는 직업정보 핵심 역량 기준 예상치, 경력 발판은 관련 경력 인정 가능성`}>커리어 경로</Title>
       <ol className="relative ml-2 border-l-2 border-slate-200 pl-5">
         {stages.map((st, i) => (
           <li key={st.key + i} className="relative mb-3">
@@ -38,7 +38,24 @@ export default async function PathPage({ searchParams }: { searchParams: SearchP
                 <b className="text-navy">{st.title}</b>
               )}
               <p className="text-xs text-slate-500">{st.note}</p>
-              <Gauge now={st.coverage} label={st.key === "now" ? "지금" : "예상"} />
+              {st.recognition != null ? (
+                <div>
+                  <div className="relative my-1.5 h-2.5 rounded-full bg-slate-200">
+                    <div className="absolute inset-y-0 left-0 rounded-full bg-teal" style={{ width: `${st.recognition}%` }} />
+                  </div>
+                  <div className="flex justify-between text-[11px] text-slate-500">
+                    <span>
+                      경력 인정 가능성 <b className="text-teal">{st.recognition}</b>/100
+                    </span>
+                    <span>역량 충족도 예상 {st.coverage}%</span>
+                  </div>
+                </div>
+              ) : (
+                <Gauge now={st.coverage} label={st.key === "now" ? "지금" : st.key === "target" ? "도전 시 예상" : "예상"} />
+              )}
+              {st.gained && st.gained.length > 0 && (
+                <p className="mt-1 text-[11px] font-bold text-teal">+ {st.gained.slice(0, 4).join(" · ")}</p>
+              )}
             </div>
           </li>
         ))}

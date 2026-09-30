@@ -19,6 +19,15 @@ describe("커리어 경로", () => {
     expect(stages[3].note).toContain("일반기계기사");
   });
 
+  it("1순위 단계는 새로 채우는 역량을, 경력 발판은 경력 인정 가능성을 담는다", () => {
+    const [, first, stepping] = pathOf("P-A12");
+    expect(first.gained?.length).toBeGreaterThan(0);
+    expect(first.gained).toContain("문제 해결");
+    expect(stepping.recognition).toBeGreaterThanOrEqual(70);
+    expect(stepping.gained).toEqual([]);
+    expect(stepping.note).toContain("경력");
+  });
+
   it("방향 전환 트랙: 역량보다 서류·면접 보완이 다음 단계", () => {
     const b = pathOf("P-B07");
     expect(b.map((s) => s.key)).toEqual(["now", "prepare", "target"]);
