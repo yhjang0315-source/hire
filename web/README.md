@@ -18,6 +18,7 @@ npm test      # 엔진·카드 문장·수집 정규화 테스트(Vitest)
 | `/input` | 입력 — 목표 직종, 전공·자격, AI 경력 인터뷰(시연은 키워드 규칙), 공고 번호로 지원 이력 자동 채움, 희망 조건, 성향 자가진단 |
 | `/result` | 진단과 추천 — 진단 유형·근거, 지금 지원 1순위, 사다리 단계별 공고 또는 다시 도전할 공고 |
 | `/coach/[공고번호]` | 서류 코칭(P1) — 필수 요건 충족 여부, 갖춘 우대 역량을 공고 표현으로 다시 쓴 예시 문장, 보완할 우대 조건, 제출 전 체크리스트 |
+| `/interview/[공고번호]` | AI 모의면접(P1) — 인재상·직무 기반 질문 5개, 답변별 구조·근거·수치·인재상 연결 점검, 성향 강점화 팁, 연습 점수 |
 | `/card/[공고번호]` | 추천 카드 — A. 한마디 · B. 판단 근거(출처 표시) · 목표 역량 충족도 · C. 이후 계획 · 플랜 B · 훈련과정 |
 
 입력 상태는 URL(`?persona=` 또는 `?s=`)에 담겨 서버 저장 없이 새로고침·공유가 된다. 카드의 "결과 입력"으로 지원 결과를 바꾸면 다시 진단한다.
@@ -33,7 +34,7 @@ npm test      # 엔진·카드 문장·수집 정규화 테스트(Vitest)
 | `src/lib/collect/` | 고용24 응답 파싱·정규화 |
 | `scripts/` | 데이터 수집 CLI(`collect.ts`)와 API 호출 설정(`endpoints.ts`) |
 | `src/data/cache.ts` | 수집 캐시 로더(`DATA_SOURCE=cache`) |
-| `src/lib/coach/` | 서류 코칭(`document.ts`: 템플릿 코치, `getDocCoach()` 교체 지점) |
+| `src/lib/coach/` | 서류 코칭(`document.ts`), AI 모의면접(`mockInterview.ts`) — 템플릿 구현과 `getDocCoach()`·`getInterviewCoach()` 교체 지점 |
 | `src/lib/card/` | 추천 카드 문장(`writer.ts`: 템플릿 작성기·금지 표현 검사), 화면 라벨 |
 | `src/lib/session.ts` | 페이지 공통: URL 상태 해석, 엔진 실행, 카드 조립 |
 | `src/lib/interview.ts` | AI 경력 인터뷰 시연용 키워드 규칙 |
@@ -99,7 +100,8 @@ rec.best?.posting.id; // "MOCK-D01"
 
 1. `src/lib/card/writer.ts`의 `getCardWriter()` — 템플릿 대신 AI로 카드 문장 생성(금지 표현 검사 `violations()` 유지)
 2. `src/lib/coach/document.ts`의 `getDocCoach()` — 이력서 전체 첨삭
-3. `src/lib/interview.ts`의 `interviewTags()` — 대화형 인터뷰와 역량 구조화 추출
-4. 수집 단계의 공고 인재상(`talent`)·우대 역량 추출
+3. `src/lib/coach/mockInterview.ts`의 `getInterviewCoach()` — 꼬리 질문과 답변 평가
+4. `src/lib/interview.ts`의 `interviewTags()` — 대화형 인터뷰와 역량 구조화 추출
+5. 수집 단계의 공고 인재상(`talent`)·우대 역량 추출
 
 설계 기준은 [../docs/service_design.md](../docs/service_design.md)를 따른다.

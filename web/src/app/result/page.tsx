@@ -106,7 +106,13 @@ export default async function ResultPage({ searchParams }: { searchParams: Searc
             />
           ))}
           {d.type === "조직적합형" ? (
-            <p className="mt-1 text-[11px] text-slate-400">AI 모의면접(P1)으로 면접을 준비할 수 있어요</p>
+            rec.redirect[0] && (
+              <div className="mt-2">
+                <ButtonLink href={`/interview/${encodeURIComponent(rec.redirect[0].posting.id)}?${query}`}>
+                  {rec.redirect[0].posting.company} 공고로 AI 모의면접
+                </ButtonLink>
+              </div>
+            )
           ) : (
             rec.redirect[0] && (
               <div className="mt-2">
