@@ -1,10 +1,12 @@
 // 페이지 공통: URL에서 입력 상태를 찾고 엔진을 돌린다(서버 전용)
 import "server-only";
+import type { Posting } from "@/lib/types";
 import { DEMO_TODAY, getPersonas } from "@/data";
 import { getDataset } from "@/data/cache";
-import { coverageFor, matchTrainings, missingTargetTags, recommend, type Recommendation, type ScoredPosting } from "@/lib/engine";
+import { coverageFor, currentFit, matchTrainings, missingTargetTags, recommend, type Recommendation, type ScoredPosting } from "@/lib/engine";
 import { getCardWriter, type CardText } from "@/lib/card/writer";
 import { decodeState, encodeState, type InputState } from "@/lib/state";
+import { getDocCoach, type DocCoaching } from "@/lib/coach/document";
 
 export type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 
@@ -58,4 +60,17 @@ export async function buildCard(state: InputState, postingId: string): Promise<C
       .sort((a, b) => b.score - a.score)[0] ?? null;
   const card = await getCardWriter().write({ profile: state.profile, rec, sp, coverage, trainings, planB });
   return { rec, sp, card, coverage, trainings };
+}
+
+/** 서류 코칭: 추천 목록에 없는 공고(이미 지원한 공고 포함)도 코칭할 수 있다 */
+export async function buildDocCoaching(
+  state: InputState,
+  postingId: string,
+): Promise<{ posting: Posting; coaching: DocCoaching; fitScore: number } | null> {
+  const data = getDataset();
+  const posting = data.postings.find((p) => p.id === postingId);
+  if (!posting) return null;
+  const fit = currentFit(state.profile, posting, data.skillMap);
+  const coaching = await getDocCoach().coach({ profile: state.profile, posting, fit, skillMap: data.skillMap });
+  return { posting, coaching, fitScore: fit.score };
 }
