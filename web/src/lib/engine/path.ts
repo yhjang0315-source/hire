@@ -1,7 +1,8 @@
-// 커리어 경로(S11): 지금 → 1순위 공고 → 경력 발판 → 목표 공고, 단계별 예상 역량 충족도
+// 커리어 경로(S11): 지금 → 1순위 공고 → 경력 발판 → 목표 공고
+// 단계마다 예상 역량 충족도와 새로 채우는 역량을, 경력 발판은 역량 대신 경력 인정 가능성을 보여 준다.
 import type { Dataset } from "@/data";
-import type { Profile } from "@/lib/types";
-import { coverage, coverageAfter } from "./competency";
+import type { Occupation, Profile } from "@/lib/types";
+import { coverage, itemsOf, keyItems } from "./competency";
 import type { Recommendation, ScoredPosting } from "./recommend";
 
 export interface PathStage {
@@ -10,6 +11,8 @@ export interface PathStage {
   title: string;
   posting?: ScoredPosting;
   coverage: number; // 목표 역량 충족도(예상, %)
+  gained?: string[]; // 이 단계에서 새로 채우는 목표 핵심 역량
+  recognition?: number; // 경력 발판: 목표 직종 관련 경력으로 인정될 가능성(0~100)
   note: string;
 }
 
@@ -17,6 +20,14 @@ export function careerPath(profile: Profile, rec: Recommendation, data: Dataset)
   const target = rec.targets[0];
   if (!target) return [];
   const now = coverage(profile.competencies, target, data.skillMap);
+  const key = keyItems(target);
+  /** 일한 직업들의 핵심 항목을 더했을 때 채워지는 목표 핵심 항목 */
+  const coveredAfter = (worked: Occupation[]) => {
+    const have = itemsOf(profile.competencies, data.skillMap);
+    for (const occ of worked) for (const k of keyItems(occ)) have.add(k);
+    return key.filter((k) => have.has(k));
+  };
+  const pct = (items: string[]) => (key.length ? Math.round((items.length / key.length) * 100) : 0);
   const stages: PathStage[] = [
     { key: "now", when: "지금", title: "지금의 나", coverage: now.now, note: now.missing.length ? `부족: ${now.missing.slice(0, 3).join("·")}` : "핵심 역량을 고루 갖췄어요" },
   ];
@@ -46,24 +57,32 @@ export function careerPath(profile: Profile, rec: Recommendation, data: Dataset)
   }
 
   const worked = [best.occupation];
+  const firstItems = coveredAfter(worked);
   stages.push({
     key: "first",
     when: "지금 ~ 1년",
     title: `${best.posting.company} ${best.posting.title}`,
     posting: best,
-    coverage: coverageAfter(profile.competencies, target, data.skillMap, worked),
+    coverage: pct(firstItems),
+    gained: now.missing.filter((k) => firstItems.includes(k)),
     note: "일하면서 목표 직무 역량 쌓기",
   });
   const stepping = rec.tiers.stepping.find((sp) => sp.posting.id !== best.posting.id);
   if (stepping) {
     worked.push(stepping.occupation);
+    const items = coveredAfter(worked);
+    const gained = items.filter((k) => !firstItems.includes(k));
     stages.push({
       key: "stepping",
       when: "1~2년",
       title: `${stepping.posting.company} ${stepping.posting.title}`,
       posting: stepping,
-      coverage: coverageAfter(profile.competencies, target, data.skillMap, worked),
-      note: "목표 직종의 관련 경력으로 인정받기 좋은 곳",
+      coverage: pct(items),
+      gained,
+      recognition: stepping.recognition,
+      note: gained.length
+        ? "목표 직종의 관련 경력으로 인정받으면서 남은 역량도 채우는 곳"
+        : "역량보다 경력을 채우는 단계 — 목표 직종의 관련 경력으로 인정받기 좋은 곳",
     });
   }
   const last = stages[stages.length - 1].coverage;
