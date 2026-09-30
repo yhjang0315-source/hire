@@ -7,8 +7,19 @@ Next.js 16 · TypeScript · Tailwind CSS
 ```bash
 npm install
 npm run dev   # http://localhost:3000
-npm test      # 진단·추천 엔진·수집 정규화 테스트(Vitest)
+npm test      # 엔진·카드 문장·수집 정규화 테스트(Vitest)
 ```
+
+## 화면 (P0)
+
+| 경로 | 화면 |
+|---|---|
+| `/` | 시작 — 시연 페르소나 3명 선택, 직접 입력 |
+| `/input` | 입력 — 목표 직종, 전공·자격, AI 경력 인터뷰(시연은 키워드 규칙), 공고 번호로 지원 이력 자동 채움, 희망 조건, 성향 자가진단 |
+| `/result` | 진단과 추천 — 진단 유형·근거, 지금 지원 1순위, 사다리 단계별 공고 또는 다시 도전할 공고 |
+| `/card/[공고번호]` | 추천 카드 — A. 한마디 · B. 판단 근거(출처 표시) · 목표 역량 충족도 · C. 이후 계획 · 플랜 B · 훈련과정 |
+
+입력 상태는 URL(`?persona=` 또는 `?s=`)에 담겨 서버 저장 없이 새로고침·공유가 된다. 카드의 "결과 입력"으로 지원 결과를 바꾸면 다시 진단한다.
 
 ## 구조
 
@@ -21,6 +32,10 @@ npm test      # 진단·추천 엔진·수집 정규화 테스트(Vitest)
 | `src/lib/collect/` | 고용24 응답 파싱·정규화 |
 | `scripts/` | 데이터 수집 CLI(`collect.ts`)와 API 호출 설정(`endpoints.ts`) |
 | `src/data/cache.ts` | 수집 캐시 로더(`DATA_SOURCE=cache`) |
+| `src/lib/card/` | 추천 카드 문장(`writer.ts`: 템플릿 작성기·금지 표현 검사), 화면 라벨 |
+| `src/lib/session.ts` | 페이지 공통: URL 상태 해석, 엔진 실행, 카드 조립 |
+| `src/lib/interview.ts` | AI 경력 인터뷰 시연용 키워드 규칙 |
+| `src/app/`, `src/components/` | 화면 |
 
 ## 모의데이터
 
@@ -75,5 +90,13 @@ rec.best?.posting.id; // "MOCK-D01"
 2. 실제 필드명과 대조해 후보 키와 URL을 고친다.
 3. 공고 직종코드 → 직업정보 코드 매핑(`src/data/occupationMap.json`)을 채운다.
 4. 공고의 인재상(`talent`)은 비워서 수집하므로, 생성형 AI 추출 단계에서 채운다.
+
+## 생성형 AI 연결 지점
+
+선정 20팀에 제공되는 생성형 AI 플랫폼이 정해지면 아래만 바꾼다. 점수·진단·수치는 계속 엔진이 계산한다.
+
+1. `src/lib/card/writer.ts`의 `getCardWriter()` — 템플릿 대신 AI로 카드 문장 생성(금지 표현 검사 `violations()` 유지)
+2. `src/lib/interview.ts`의 `interviewTags()` — 대화형 인터뷰와 역량 구조화 추출
+3. 수집 단계의 공고 인재상(`talent`)·우대 역량 추출
 
 설계 기준은 [../docs/service_design.md](../docs/service_design.md)를 따른다.
