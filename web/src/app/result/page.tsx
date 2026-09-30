@@ -5,6 +5,8 @@ import { TRAIT_LABELS } from "@/lib/engine";
 import { joinItems } from "@/lib/korean";
 import { Badge, ButtonLink, Card, Meter, Section, Title } from "@/components/ui";
 import PostingRow from "@/components/PostingRow";
+import { SaveSnapshot } from "@/components/History";
+import { encodeState } from "@/lib/state";
 
 const TIER_TONE = { target: "border-navy", stepping: "border-brand", growing: "border-brand", immediate: "border-slate-400" };
 
@@ -39,6 +41,15 @@ export default async function ResultPage({ searchParams }: { searchParams: Searc
 
   return (
     <>
+      <SaveSnapshot
+        snap={{
+          s: encodeState(state),
+          alias: state.profile.alias,
+          diagnosis: label.title,
+          best: rec.best ? `${rec.best.posting.company} · ${rec.best.posting.title}` : undefined,
+          applications: state.applications.length,
+        }}
+      />
       <Title sub={`${state.profile.alias} · 목표 ${rec.targets.map((t) => t.name).join(", ")}`}>진단과 추천 결과</Title>
 
       <Card className="bg-orange-50">
@@ -125,15 +136,21 @@ export default async function ResultPage({ searchParams }: { searchParams: Searc
         </Section>
       )}
 
-      <div className="mt-4">
-        <ButtonLink href={`/training?${query}`} variant="outline">
-          부족 역량 훈련과정 보기
+      <div className="mt-4 grid grid-cols-2 gap-2">
+        <ButtonLink href={`/path?${query}`} variant="outline">
+          커리어 경로
         </ButtonLink>
-      </div>
-      <div className="mt-2 grid grid-cols-2 gap-2">
+        <ButtonLink href={`/training?${query}`} variant="outline">
+          훈련과정
+        </ButtonLink>
+        <ButtonLink href={`/my?${query}`} variant="outline">
+          마이페이지
+        </ButtonLink>
         <ButtonLink href={`/input?${query}`} variant="outline">
           결과 입력·수정
         </ButtonLink>
+      </div>
+      <div className="mt-2">
         <ButtonLink href="/" variant="outline">
           처음으로
         </ButtonLink>

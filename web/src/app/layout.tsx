@@ -18,9 +18,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="min-h-full bg-slate-100 text-slate-900">
         <div className="mx-auto flex min-h-screen w-full max-w-md flex-col bg-slate-50 shadow-sm">
-          <header className="bg-[#1f3a68] px-5 pb-4 pt-5 text-white">
+          <header className="flex items-center justify-between bg-[#1f3a68] px-5 pb-4 pt-5 text-white">
             <Link href="/" className="text-xs opacity-80">
               고용24 · 커리어 사다리
+            </Link>
+            <Link href="/my" className="text-xs font-bold opacity-90">
+              마이페이지
             </Link>
           </header>
           <main className="flex-1 px-4 py-4">{children}</main>
