@@ -38,6 +38,9 @@ export interface Posting {
   talent: string[]; // 인재상 키워드(실서비스에서는 생성형 AI로 공고 본문에서 추출)
   employmentType: EmploymentType;
   closeDate: string; // YYYY-MM-DD
+  address?: string; // 근무지 주소(시·군·구)
+  lat?: number; // 근무지 좌표 — 실데이터는 수집 단계에서 주소 → 좌표 변환
+  lng?: number;
 }
 
 /** 성향 5축: -2(왼쪽 성향) ~ +2(오른쪽 성향) */

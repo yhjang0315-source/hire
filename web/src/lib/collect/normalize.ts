@@ -139,6 +139,7 @@ export function postingFromRaw(
     title: str(pick(item, ["title", "wantedTitle"]) ?? pick(w, ["wantedTitle"])),
     occupationCode: occupationMap[jobsCd] ?? jobsCd,
     region: normRegion(str(pick(item, ["region", "basicAddr"]) ?? pick(w, ["workRegion"]))),
+    address: str(pick(item, ["basicAddr"]) ?? pick(w, ["workRegion"])) || undefined,
     salaryMin: sal.min,
     salaryMax: sal.max,
     career: career.career,
