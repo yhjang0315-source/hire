@@ -67,3 +67,12 @@ export function coverage(
   }
   return result;
 }
+
+/** 여러 직업에서 일한 뒤의 예상 충족도: 사용자 항목 + 각 직업 핵심 항목 */
+export function coverageAfter(userTags: string[], target: Occupation, skillMap: SkillMap, worked: Occupation[]): number {
+  const key = keyItems(target);
+  if (key.length === 0) return 0;
+  const have = itemsOf(userTags, skillMap);
+  for (const occ of worked) for (const k of keyItems(occ)) have.add(k);
+  return Math.round((key.filter((k) => have.has(k)).length / key.length) * 100);
+}

@@ -96,3 +96,29 @@ export function buildTrainingPlan(state: InputState, regionOnly: boolean) {
   const courses = matchTrainings(needs, state.profile, pool, 10).map((t) => ({ course: t, hits: trainingHits(t, needs, data) }));
   return { rec, coverage, needs, courses };
 }
+
+export interface Alert {
+  tone: "orange" | "blue" | "teal" | "gray";
+  text: string;
+  href?: string;
+}
+
+/** 마이페이지(S10): 지원 현황과 알림 */
+export function buildMyPage(state: InputState, query: string) {
+  const data = getDataset();
+  const rec = run(state);
+  const byId = new Map(data.postings.map((p) => [p.id, p]));
+  const board = state.applications.map((a) => ({ ...a, posting: byId.get(a.postingId) }));
+  const alerts: Alert[] = [];
+  const card = (id: string) => `/card/${encodeURIComponent(id)}?${query}`;
+  for (const sp of allScored(rec).filter((x) => x.daysLeft <= 7 && x.fit.score >= 60).sort((a, b) => a.daysLeft - b.daysLeft).slice(0, 2)) {
+    alerts.push({ tone: "orange", text: `${sp.posting.company} ${sp.posting.title} 마감 D-${sp.daysLeft}`, href: card(sp.posting.id) });
+  }
+  const stepping = rec.tiers.stepping[0];
+  if (stepping) alerts.push({ tone: "blue", text: `경력 발판 공고가 열려 있어요 · ${stepping.posting.company} ${stepping.posting.title}`, href: card(stepping.posting.id) });
+  for (const w of board.filter((b) => b.result === "대기")) {
+    alerts.push({ tone: "teal", text: `${w.posting?.company ?? w.postingId} 결과가 나오면 입력해 주세요 — 다시 진단해 드려요`, href: `/input?${query}` });
+  }
+  if (state.applications.length < 3) alerts.push({ tone: "gray", text: "지원 3건 이상이면 탈락 원인을 진단할 수 있어요", href: `/input?${query}` });
+  return { rec, board, alerts };
+}

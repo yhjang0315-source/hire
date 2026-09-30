@@ -45,7 +45,7 @@ export function Meter({ label, value, dark = false }: { label: string; value: nu
   );
 }
 
-export function Gauge({ now, after }: { now: number; after?: number }) {
+export function Gauge({ now, after, label = "지금" }: { now: number; after?: number; label?: string }) {
   return (
     <div>
       <div className="relative my-1.5 h-2.5 rounded-full bg-slate-200">
@@ -58,7 +58,7 @@ export function Gauge({ now, after }: { now: number; after?: number }) {
         <div className="absolute inset-y-0 left-0 rounded-full bg-brand" style={{ width: `${now}%` }} />
       </div>
       <div className="flex justify-between text-[11px] text-slate-500">
-        <span>지금 {now}%</span>
+        <span>{label} {now}%</span>
         {after != null && <span>1년 후 예상 {after}%</span>}
       </div>
     </div>
