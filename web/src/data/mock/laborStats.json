@@ -1,0 +1,11 @@
+{
+  "_note": "모의데이터 — 고용행정통계 구인구직취업현황 형태를 흉내 낸 가상 수치(직업분류 중분류·지역별)",
+  "items": [
+    { "middleClass": "15", "region": "경기", "month": "2026-10", "newOpenings": 820, "newSeekers": 2050 },
+    { "middleClass": "15", "region": "서울", "month": "2026-10", "newOpenings": 610, "newSeekers": 1790 },
+    { "middleClass": "81", "region": "경기", "month": "2026-10", "newOpenings": 2410, "newSeekers": 1480 },
+    { "middleClass": "82", "region": "경기", "month": "2026-10", "newOpenings": 1530, "newSeekers": 1260 },
+    { "middleClass": "13", "region": "서울", "month": "2026-10", "newOpenings": 3480, "newSeekers": 5020 },
+    { "middleClass": "13", "region": "경기", "month": "2026-10", "newOpenings": 1490, "newSeekers": 2230 }
+  ]
+}

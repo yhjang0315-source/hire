@@ -34,6 +34,10 @@
 | [docs/proposal_draft.md](docs/proposal_draft.md) | 1차 기획안 초안 (공모전 제시 목차 기준) |
 | [docs/proposal_outline.md](docs/proposal_outline.md) | 기획안 쪽 배분과 이미지 목록 |
 
+## 개발
+
+- [web/](web/) — MVP 앱(Next.js · TypeScript). 실행 방법과 구조는 [web/README.md](web/README.md)
+
 ## 진행 상황
 
 - [x] 공모전 분석, 아이디어 후보 비교
@@ -43,5 +47,6 @@
 - [x] 1차 기획안 초안 v0.1
 - [x] 이미지 제작, PDF 변환 v1
 - [ ] 근거 통계 원문 확인, 데이터 항목 API 명세 대조
-- [ ] 최종 검토 후 제출 (마감 10.13)
+- [x] 1차 기획안·신청서 제출
+- [ ] MVP 사전 준비: 프로젝트 골격·모의데이터 → 진단·추천 엔진 → 데이터 수집 스크립트 → P0 화면
 - [ ] (선정 시) MVP 개발
