@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# 수집 데이터
+/src/data/cache/
+/data/raw/
+!.env.example
