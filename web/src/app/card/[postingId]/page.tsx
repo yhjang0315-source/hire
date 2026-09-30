@@ -101,6 +101,11 @@ export default async function CardPage({
         </>
       )}
 
+      <div className="mt-2">
+        <ButtonLink href={`/coach/${encodeURIComponent(sp.posting.id)}?${resolved.query}`} variant="outline">
+          이 공고 서류 코칭 받기
+        </ButtonLink>
+      </div>
       <div className="mt-2 grid grid-cols-2 gap-2">
         <ButtonLink href={`/result?${resolved.query}`} variant="outline">
           추천 목록으로

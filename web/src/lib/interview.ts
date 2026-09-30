@@ -23,3 +23,14 @@ export const INTERVIEW_QUESTION = "학교나 아르바이트, 인턴에서 해 �
 export function interviewTags(text: string): string[] {
   return [...new Set(RULES.filter(([re]) => re.test(text)).map(([, tag]) => tag))];
 }
+
+/** 경험 서술에서 태그를 뒷받침하는 구절(쉼표·마침표 단위). 없으면 null */
+export function evidenceFor(text: string, tag: string): string | null {
+  const rule = RULES.find(([, t]) => t === tag)?.[0];
+  if (!rule) return null;
+  const clause = text
+    .split(/[,.!?\n]|그리고/)
+    .map((s) => s.trim())
+    .find((s) => rule.test(s));
+  return clause || null;
+}
