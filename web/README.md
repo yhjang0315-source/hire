@@ -110,6 +110,16 @@ rec.best?.posting.id; // "MOCK-D01"
 4. 공고의 인재상(`talent`)은 비워서 수집하므로, 생성형 AI 추출 단계에서 채운다.
 5. 근무지 주소(`basicAddr`)는 `address`로 담고, 지도용 좌표(`lat`·`lng`)는 주소 → 좌표 변환(지오코딩) 단계를 추가해 채운다. 좌표가 없는 공고는 지도 목록에만 보인다.
 
+## 배포(심사용 URL)
+
+1. 모의데이터 시연: Vercel에서 이 저장소를 가져오고 **Root Directory를 `web`** 으로 지정해 배포한다. 환경 변수는 필요 없다.
+2. 수집 데이터로 배포: 수집 캐시(`src/data/cache/`)는 저장소에서 제외되어 있으므로 둘 중 하나로 넣는다.
+   1. 빌드 명령 앞에 수집 명령을 붙이고(`npm run collect -- postings --pages 3 && … && npm run build`), 인증키와 `DATA_SOURCE=cache`를 배포 환경 변수로 넣는다.
+   2. 로컬에서 수집한 캐시를 저장소에 포함한다(`.gitignore`의 `/src/data/cache/` 줄 삭제).
+3. 캐시는 실행 중 파일로 읽으므로 `next.config.ts`의 `outputFileTracingIncludes`로 모든 화면의 서버 번들에 포함한다.
+4. 배포 후 `BASE=https://배포주소 npm run smoke`로 전체 화면을 점검한다.
+5. 공고 지도 배경은 OpenStreetMap 타일을 쓴다(출처 표시 유지). 시연 규모를 넘는 사용량이면 타일 제공처를 바꾼다.
+
 ## 생성형 AI 연결 지점
 
 선정 20팀에 제공되는 생성형 AI 플랫폼이 정해지면 아래만 바꾼다. 점수·진단·수치는 계속 엔진이 계산한다.
