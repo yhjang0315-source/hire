@@ -40,6 +40,9 @@ export default async function CardPage({
         <div className="text-xs text-slate-500">
           {sp.posting.region} · 경력 {sp.posting.career} · {sp.posting.salaryMin?.toLocaleString()}~{sp.posting.salaryMax?.toLocaleString()}만원 · 마감 D-{sp.daysLeft}
         </div>
+        <Link href={`/posting/${encodeURIComponent(sp.posting.id)}?${resolved.query}`} className="text-xs font-bold text-brand">
+          공고·기업 상세 →
+        </Link>
       </div>
 
       <h2 className="mb-1 text-sm font-extrabold text-navy">A. 한마디</h2>

@@ -22,6 +22,7 @@ export interface Posting {
   id: string; // 구인인증번호
   company: string;
   companySize?: string;
+  industry?: string; // 업종
   title: string;
   occupationCode: string; // 직종코드 → Occupation.code
   region: string;
@@ -104,6 +105,7 @@ export interface TrainingCourse {
 /** 고용행정통계 — 직종 중분류·지역별 구인구직 */
 export interface LaborStat {
   middleClass: string; // 직업분류 중분류
+  className?: string; // 중분류 이름
   region: string;
   month: string; // YYYY-MM
   newOpenings: number; // 신규구인인원
