@@ -12,3 +12,30 @@ body {
   font-family: var(--font-sans);
   word-break: keep-all;
 }
+
+/* 공고 지도 마커: 단계 색 + 기호(색만으로 구분하지 않음), 흰 테두리로 지도와 분리 */
+.pm-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgb(15 23 42 / 0.35);
+  color: #0f172a;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+}
+.pm-best {
+  border: 3px solid #1f3a68;
+  font-size: 15px;
+}
+.leaflet-popup-content {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.pm-sub {
+  color: #64748b;
+  font-size: 12px;
+}

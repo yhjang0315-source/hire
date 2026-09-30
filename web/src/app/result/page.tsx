@@ -140,6 +140,9 @@ export default async function ResultPage({ searchParams }: { searchParams: Searc
         <ButtonLink href={`/path?${query}`} variant="outline">
           커리어 경로
         </ButtonLink>
+        <ButtonLink href={`/map?${query}`} variant="outline">
+          지도로 보기
+        </ButtonLink>
         <ButtonLink href={`/training?${query}`} variant="outline">
           훈련과정
         </ButtonLink>
