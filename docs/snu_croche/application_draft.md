@@ -18,4 +18,4 @@ Croche를 앱의 AI 두뇌로 활용합니다. ① Tool 인터페이스: 스케�
 
 1. 서비스명 확정
 2. 기획 상세: [service_spec.md](service_spec.md)
-3. 팀 인원(1~3인)과 개발 형태(추천: React Native·Expo 모바일 앱)
+3. 개발 형태(추천: React Native·Expo 모바일 앱) — 팀은 1인으로 확정
