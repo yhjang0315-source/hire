@@ -33,6 +33,7 @@
 | [docs/proposal/career_ladder_proposal.pdf](docs/proposal/career_ladder_proposal.pdf) | **1차 기획안 PDF (제출용, 10쪽)** — 소스와 빌드 방법은 [docs/proposal/](docs/proposal/) |
 | [docs/proposal_draft.md](docs/proposal_draft.md) | 1차 기획안 초안 (공모전 제시 목차 기준) |
 | [docs/proposal_outline.md](docs/proposal_outline.md) | 기획안 쪽 배분과 이미지 목록 |
+| [docs/demo_script.md](docs/demo_script.md) | **시연 동선과 녹화 대본** (3분 기본 대본, 확장 장면, 예상 질문) |
 
 ## 개발
 
