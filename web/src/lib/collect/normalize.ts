@@ -135,6 +135,7 @@ export function postingFromRaw(
     id: str(pick(item, ["wantedAuthNo"])),
     company: str(pick(item, ["company", "corpNm"]) ?? pick(detail?.corp, ["corpNm"])),
     companySize: str(pick(detail?.corp, ["busiSize", "totPsncnt"])) || undefined,
+    industry: str(pick(item, ["indTpNm"]) ?? pick(detail?.corp, ["indTpCdNm"])) || undefined,
     title: str(pick(item, ["title", "wantedTitle"]) ?? pick(w, ["wantedTitle"])),
     occupationCode: occupationMap[jobsCd] ?? jobsCd,
     region: normRegion(str(pick(item, ["region", "basicAddr"]) ?? pick(w, ["workRegion"]))),
@@ -195,6 +196,7 @@ export function occupationFromRaw(summary: Raw, abilities: Raw[], knowledge: Raw
 export function laborStatFromRaw(row: Raw): LaborStat {
   return {
     middleClass: str(pick(row, ["jobClcd", "occpClcd", "middleClass"])).replace(/\D/g, "").slice(0, 2),
+    className: str(pick(row, ["jobClNm", "occpClNm", "className"])) || undefined,
     region: normRegion(str(pick(row, ["regionNm", "areaNm", "region"]))),
     month: normMonth(str(pick(row, ["baseYm", "stdrYm", "month"]))),
     newOpenings: num(pick(row, ["newRcrtCnt", "newOpenings", "rcrtPsncnt"])) ?? 0,

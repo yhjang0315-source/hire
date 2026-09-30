@@ -3,7 +3,7 @@ import "server-only";
 import type { Posting } from "@/lib/types";
 import { DEMO_TODAY, getPersonas } from "@/data";
 import { getDataset } from "@/data/cache";
-import { coverageFor, currentFit, matchTrainings, missingTargetTags, recommend, trainingHits, type Recommendation, type ScoredPosting } from "@/lib/engine";
+import { coverageFor, currentFit, demandComparison, matchTrainings, missingTargetTags, recommend, trainingHits, type Recommendation, type ScoredPosting } from "@/lib/engine";
 import { getCardWriter, type CardText } from "@/lib/card/writer";
 import { decodeState, encodeState, type InputState } from "@/lib/state";
 import { getDocCoach, type DocCoaching } from "@/lib/coach/document";
@@ -121,4 +121,22 @@ export function buildMyPage(state: InputState, query: string) {
   }
   if (state.applications.length < 3) alerts.push({ tone: "gray", text: "지원 3건 이상이면 탈락 원인을 진단할 수 있어요", href: `/input?${query}` });
   return { rec, board, alerts };
+}
+
+/** 공고·기업 상세(S6): 공고 정보, 내 적합도, 직종별 채용 수요 */
+export function buildPostingDetail(state: InputState, postingId: string) {
+  const data = getDataset();
+  const posting = data.postings.find((p) => p.id === postingId);
+  if (!posting) return null;
+  const rec = run(state);
+  const scored = allScored(rec).find((x) => x.posting.id === postingId) ?? null;
+  const fit = currentFit(state.profile, posting, data.skillMap);
+  const occ = data.occupations.find((o) => o.code === posting.occupationCode);
+  const demand = demandComparison(
+    data.laborStats,
+    posting.region,
+    occ?.classCode.middle ?? "",
+    rec.targets.map((t) => t.classCode.middle),
+  );
+  return { posting, occupation: occ, fit, scored, demand, rec };
 }
