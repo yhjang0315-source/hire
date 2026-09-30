@@ -8,6 +8,7 @@ Next.js 16 · TypeScript · Tailwind CSS
 npm install
 npm run dev   # http://localhost:3000
 npm test      # 엔진·카드 문장·수집 정규화 테스트(Vitest)
+npm run smoke # 실행 중인 서버에 모든 화면 × 페르소나·공고 조합 요청(BASE=http://localhost:3000)
 ```
 
 ## 화면 (P0)
