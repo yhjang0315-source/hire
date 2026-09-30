@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>마감메이트</title>
+<style>
+@font-face { font-family: "Pretendard"; font-weight: 400; src: url("fonts/Pretendard-Regular.otf"); }
+@font-face { font-family: "Pretendard"; font-weight: 500; src: url("fonts/Pretendard-Medium.otf"); }
+@font-face { font-family: "Pretendard"; font-weight: 600; src: url("fonts/Pretendard-SemiBold.otf"); }
+@font-face { font-family: "Pretendard"; font-weight: 700; src: url("fonts/Pretendard-Bold.otf"); }
+@font-face { font-family: "Pretendard"; font-weight: 800; src: url("fonts/Pretendard-ExtraBold.otf"); }
+@page { size: A4; margin: 0; }
+:root {
+  --purple: #5a4bdb; --purple-soft: #efedfd; --purple-deep: #2d2580;
+  --text: #1d2433; --muted: #5b6475; --line: #dfe2ec; --bg: #f6f7fb;
+  --green: #1a9e6e; --green-soft: #e3f6ee;
+  --blue: #2f6fdb; --blue-soft: #e8f0fd;
+  --orange: #e57a12; --orange-soft: #fdf0e3;
+  --red: #d93b3b; --red-soft: #fde8e8;
+  --gray: #b8bfcc; --gray-soft: #eceef3;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: "Pretendard", sans-serif; color: var(--text); word-break: keep-all; }
+.page { width: 210mm; height: 297mm; padding: 11mm 11mm; overflow: hidden; display: flex; flex-direction: column; gap: 4.4mm; }
+.content { display: contents; }
+h2 { font-size: 10.5pt; font-weight: 800; color: var(--purple-deep); margin-bottom: 1.8mm; display: flex; align-items: center; gap: 1.5mm; }
+h2 .n { background: var(--purple); color: #fff; border-radius: 50%; width: 4.6mm; height: 4.6mm; font-size: 7.5pt; display: inline-flex; align-items: center; justify-content: center; }
+.small { font-size: 7pt; color: var(--muted); }
+
+/* header */
+.head { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid var(--purple); padding-bottom: 2.5mm; }
+.brand { display: flex; align-items: center; gap: 3mm; }
+.brand h1 { font-size: 24pt; font-weight: 800; color: var(--purple-deep); letter-spacing: -0.5px; }
+.brand .tag { font-size: 10pt; font-weight: 600; color: var(--text); margin-top: 0.8mm; }
+.meta { text-align: right; font-size: 7.5pt; color: var(--muted); line-height: 1.5; }
+
+/* problems */
+.probs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5mm; }
+.prob { background: var(--bg); border-radius: 2mm; padding: 2.2mm 3mm; font-size: 8pt; line-height: 1.45; }
+.prob b { display: block; font-size: 8.8pt; color: var(--red); margin-bottom: 0.6mm; }
+
+/* flow */
+.flow { display: grid; grid-template-columns: repeat(6, 1fr); gap: 2.6mm; position: relative; }
+.step { border: 1.3px solid var(--line); border-radius: 2mm; padding: 2mm 2mm 2.2mm; font-size: 7.2pt; line-height: 1.4; position: relative; background: #fff; }
+.step:not(:last-child)::after { content: "›"; position: absolute; right: -2.5mm; top: 50%; transform: translateY(-50%); color: var(--purple); font-weight: 800; font-size: 12pt; }
+.step .t { font-size: 8.4pt; font-weight: 700; margin-bottom: 0.8mm; display: block; }
+.badge { display: inline-block; font-size: 6.2pt; font-weight: 700; border-radius: 1mm; padding: 0.2mm 1.2mm; margin-bottom: 1mm; }
+.b-ai { background: var(--purple-soft); color: var(--purple); }
+.b-rule { background: var(--gray-soft); color: var(--muted); }
+.loop { font-size: 7pt; color: var(--purple); font-weight: 600; text-align: right; margin-top: 1mm; }
+
+/* phones */
+.phones { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; }
+.phone-wrap { display: flex; flex-direction: column; align-items: center; gap: 1.2mm; }
+.phone { width: 54mm; height: 93mm; border: 2px solid #2a3040; border-radius: 5mm; padding: 3mm 2.4mm 2.4mm; background: #fff; position: relative; overflow: hidden; }
+.phone::before { content: ""; position: absolute; top: 1.1mm; left: 50%; transform: translateX(-50%); width: 12mm; height: 1.1mm; background: #2a3040; border-radius: 1mm; }
+.cap { font-size: 7.6pt; font-weight: 700; color: var(--purple-deep); }
+.ph-title { font-size: 8pt; font-weight: 800; margin: 1mm 0 1.6mm; display: flex; justify-content: space-between; align-items: center; }
+.ph-title span { font-size: 6.2pt; font-weight: 600; color: var(--purple); }
+.card { border: 1px solid var(--line); border-radius: 1.6mm; padding: 1.4mm 1.8mm; margin-bottom: 1.4mm; font-size: 6.4pt; line-height: 1.4; }
+.card .row1 { display: flex; gap: 1mm; align-items: center; font-weight: 700; font-size: 7pt; }
+.chip { font-size: 5.6pt; font-weight: 700; padding: 0.1mm 1mm; border-radius: 0.8mm; color: #fff; }
+.c-rep { background: var(--blue); } .c-lec { background: var(--green); } .c-code { background: var(--orange); }
+.card .est { color: var(--muted); }
+.card .est b { color: var(--purple); }
+.ask { background: var(--purple-soft); border-radius: 1.6mm; padding: 1.4mm 1.8mm; font-size: 6.4pt; line-height: 1.4; }
+.ask .btns { display: flex; gap: 1mm; margin-top: 1mm; }
+.ask .btns span { background: #fff; border: 1px solid var(--purple); color: var(--purple); border-radius: 1mm; padding: 0.2mm 1.6mm; font-weight: 700; font-size: 6pt; }
+.ask .btns span.on { background: var(--purple); color: #fff; }
+
+/* week grid */
+.week { display: grid; grid-template-columns: 5mm repeat(7, 1fr); gap: 0.6mm; font-size: 5.6pt; }
+.week .dh { text-align: center; font-weight: 700; color: var(--muted); }
+.week .dh.dl { color: var(--red); }
+.week .tm { color: var(--muted); font-size: 5pt; text-align: right; padding-right: 0.4mm; height: calc(3.6mm * 15); display: flex; flex-direction: column; justify-content: space-between; }
+.week .col { --u: 3.6mm; position: relative; height: calc(3.6mm * 15); background: var(--bg); border-radius: 0.8mm; }
+.blk { position: absolute; left: 0.3mm; right: 0.3mm; border-radius: 0.7mm; font-size: 4.8pt; line-height: 1.15; padding: 0.3mm 0.4mm; color: #fff; font-weight: 600; overflow: hidden; }
+.bk-fix { background: var(--gray); color: #3b4252; }
+.bk-rep { background: var(--blue); } .bk-lec { background: var(--green); } .bk-code { background: var(--orange); }
+.bk-miss { background: repeating-linear-gradient(45deg, #f3c9a0, #f3c9a0 1mm, #fbe6d2 1mm, #fbe6d2 2mm); color: #9a5a1a; text-decoration: line-through; }
+.bk-moved { outline: 1.2px dashed var(--red); outline-offset: 0.3mm; }
+.legend { display: flex; flex-wrap: wrap; gap: 1.2mm 2mm; margin-top: 1.4mm; font-size: 5.6pt; color: var(--muted); }
+.legend i { display: inline-block; width: 2mm; height: 2mm; border-radius: 0.5mm; margin-right: 0.6mm; vertical-align: -0.3mm; }
+.toast { position: absolute; left: 2.4mm; right: 2.4mm; bottom: 2.4mm; background: #2a3040; color: #fff; border-radius: 1.4mm; padding: 1.2mm 1.8mm; font-size: 5.8pt; line-height: 1.35; }
+.toast b { color: #ffd166; }
+
+/* warning */
+.warn-top { background: var(--red-soft); border-radius: 2mm; padding: 2mm; display: flex; gap: 1.6mm; align-items: flex-start; }
+.bubble { font-size: 6.6pt; line-height: 1.4; font-weight: 600; color: #7a1f1f; }
+.bubble .dd { display: inline-block; background: var(--red); color: #fff; border-radius: 0.8mm; padding: 0 1mm; font-size: 6pt; margin-bottom: 0.6mm; }
+.prog { margin: 1.6mm 0 0.6mm; font-size: 6pt; color: var(--muted); display: flex; justify-content: space-between; }
+.bar { height: 1.8mm; background: var(--gray-soft); border-radius: 1mm; overflow: hidden; position: relative; }
+.bar i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--red); border-radius: 1mm; }
+.bar s { position: absolute; top: -0.4mm; bottom: -0.4mm; width: 0.5mm; background: var(--text); }
+.ws { margin-top: 1.8mm; border: 1.3px solid var(--purple); border-radius: 1.8mm; padding: 1.6mm 1.8mm; font-size: 6.2pt; line-height: 1.45; }
+.ws .wt { font-weight: 800; font-size: 7pt; color: var(--purple-deep); margin-bottom: 0.8mm; }
+.ws ul { list-style: none; }
+.ws li::before { content: "☐ "; color: var(--muted); }
+.ws li.done::before { content: "☑ "; color: var(--green); }
+.first { background: var(--purple-soft); border-radius: 1mm; padding: 0.8mm 1.2mm; margin: 1mm 0; }
+.first b { color: var(--purple); }
+.timer { display: flex; justify-content: space-between; align-items: center; margin-top: 1mm; }
+.timer .clock { font-size: 11pt; font-weight: 800; letter-spacing: 0.3px; }
+.timer .go { background: var(--purple); color: #fff; font-weight: 700; border-radius: 1.2mm; padding: 0.8mm 2.4mm; font-size: 6.6pt; }
+
+/* bottom */
+.bottom { display: grid; grid-template-columns: 1.08fr 1fr; gap: 4mm; }
+.cmp .who { font-size: 7.4pt; font-weight: 700; margin: 1mm 0 0.8mm; display: flex; justify-content: space-between; }
+.cmp .who span { font-weight: 500; color: var(--muted); font-size: 6.6pt; }
+.tl { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.6mm; }
+.tl .d { text-align: center; font-size: 5.8pt; color: var(--muted); }
+.tl .d.dl { color: var(--red); font-weight: 700; }
+.tl .c { height: 7mm; background: var(--bg); border-radius: 0.8mm; display: flex; align-items: flex-end; padding: 0.4mm; }
+.tl .c.safe { box-shadow: inset 0 0 0 1px var(--red); }
+.tl .c i { display: block; width: 100%; background: var(--blue); border-radius: 0.6mm; color: #fff; font-style: normal; font-size: 5.6pt; font-weight: 700; text-align: center; line-height: 1.5; }
+.cmp .note { font-size: 6.6pt; color: var(--muted); margin-top: 1.4mm; line-height: 1.45; }
+
+table.mx { width: 100%; border-collapse: separate; border-spacing: 0.6mm; font-size: 6.6pt; }
+.mx th { font-weight: 700; color: var(--muted); font-size: 6.2pt; padding: 0.6mm; text-align: center; }
+.mx th.rh { text-align: left; color: var(--text); }
+.mx td { text-align: center; border-radius: 0.8mm; padding: 1mm 0.4mm; font-weight: 700; }
+.l0 { background: var(--green-soft); color: var(--green); }
+.l1 { background: var(--blue-soft); color: var(--blue); }
+.l2 { background: var(--orange-soft); color: var(--orange); }
+.l3 { background: var(--red-soft); color: var(--red); }
+.lx { background: var(--gray-soft); color: var(--muted); font-weight: 500 !important; }
+.faces { display: flex; justify-content: space-between; margin-top: 1.4mm; }
+.faces div { text-align: center; font-size: 6pt; font-weight: 700; width: 24%; }
+.faces div p { font-weight: 500; color: var(--muted); font-size: 5.6pt; line-height: 1.3; margin-top: 0.3mm; }
+
+/* footer */
+.croche { background: var(--purple-deep); color: #fff; border-radius: 2mm; padding: 2.2mm 3mm; display: grid; grid-template-columns: auto 1fr 1fr 1fr 1fr; gap: 2.5mm; align-items: center; font-size: 6.8pt; line-height: 1.4; }
+.croche .lbl { font-weight: 800; font-size: 8.4pt; line-height: 1.25; }
+.croche b { display: block; color: #c9c2ff; font-size: 7pt; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="f0" viewBox="0 0 40 40"><path d="M20 3c9 0 16 6 16 15v8c0 7-6 11-16 11S4 33 4 26v-8C4 9 11 3 20 3z" fill="#d7f2e6" stroke="#1a9e6e" stroke-width="1.6"/><path d="M12 19q2.5-3 5 0M23 19q2.5-3 5 0" stroke="#1d2433" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M14 25q6 6 12 0" stroke="#1d2433" stroke-width="1.8" fill="none" stroke-linecap="round"/><circle cx="10.5" cy="24" r="2" fill="#f5a3a3"/><circle cx="29.5" cy="24" r="2" fill="#f5a3a3"/></symbol>
+    <symbol id="f1" viewBox="0 0 40 40"><path d="M20 3c9 0 16 6 16 15v8c0 7-6 11-16 11S4 33 4 26v-8C4 9 11 3 20 3z" fill="#e3ecfd" stroke="#2f6fdb" stroke-width="1.6"/><circle cx="14.5" cy="19" r="2" fill="#1d2433"/><circle cx="25.5" cy="19" r="2" fill="#1d2433"/><path d="M16 25.5q4 3 8 0" stroke="#1d2433" stroke-width="1.8" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="f2" viewBox="0 0 40 40"><path d="M20 3c9 0 16 6 16 15v8c0 7-6 11-16 11S4 33 4 26v-8C4 9 11 3 20 3z" fill="#fde9d3" stroke="#e57a12" stroke-width="1.6"/><path d="M12 19h5M23 19h5" stroke="#1d2433" stroke-width="2" stroke-linecap="round"/><path d="M15.5 26.5h9" stroke="#1d2433" stroke-width="1.8" stroke-linecap="round"/><path d="M31 9q2 3 0 5q-2-2 0-5z" fill="#6aa8f0"/></symbol>
+    <symbol id="f3" viewBox="0 0 40 40"><path d="M20 3c9 0 16 6 16 15v8c0 7-6 11-16 11S4 33 4 26v-8C4 9 11 3 20 3z" fill="#fbd5d5" stroke="#d93b3b" stroke-width="1.6"/><path d="M11 14.5l6 2.5M29 14.5l-6 2.5" stroke="#1d2433" stroke-width="2" stroke-linecap="round"/><circle cx="14.5" cy="20" r="2" fill="#1d2433"/><circle cx="25.5" cy="20" r="2" fill="#1d2433"/><path d="M14 29q6-5 12 0" stroke="#1d2433" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M30 6l2 3M33 5l-1 4M35 8l-3 1" stroke="#d93b3b" stroke-width="1.4" stroke-linecap="round"/></symbol>
+  </defs>
+</svg>
+
+<div class="page"><div class="content">
+
+  <div class="head">
+    <div class="brand">
+      <svg width="15mm" height="15mm"><use href="#f1"/></svg>
+      <div>
+        <h1>마감메이트</h1>
+        <div class="tag">녹강·과제 마감, 내 스타일대로 짜 주고 제때 시작하게 만드는 AI 일정 앱</div>
+      </div>
+    </div>
+    <div class="meta">SNU × Croche AI Hackathon 2026<br>아이디어 설명 자료 · 1인 참가</div>
+  </div>
+
+  <section>
+    <h2><span class="n">1</span>대학생이 마감을 놓치는 이유</h2>
+    <div class="probs">
+      <div class="prob"><b>녹강 수강 기간을 놓친다</b>기간 안에 들어야 출석 인정인데 과목마다 기간이 달라 헷갈린다.</div>
+      <div class="prob"><b>과제가 몰리면 까먹는다</b>여러 과목에서 한꺼번에 쏟아지고, 얼마나 걸릴지 몰라 계획을 못 세운다.</div>
+      <div class="prob"><b>계획이 밀리면 포기한다</b>하루만 밀려도 다시 짜기 귀찮아 결국 마감 전날 몰아서 한다.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">2</span>서비스 흐름</h2>
+    <div class="flow">
+      <div class="step"><span class="badge b-ai">AI</span><span class="t">① 입력</span>과제 안내 PDF·공지 캡처·직접 입력 + 시간표·알바 등 고정 일정</div>
+      <div class="step"><span class="badge b-ai">AI</span><span class="t">② 과제 분석</span>유형·마감·분량·녹강 기간 추출, 소요 시간 추정, 애매하면 되묻기</div>
+      <div class="step"><span class="badge b-rule">규칙</span><span class="t">③ 맞춤 스케줄</span>스타일(시작 성향·보정 배율·집중 시간·시간대)로 빈 시간에 배치</div>
+      <div class="step"><span class="badge b-ai">AI</span><span class="t">④ 작업 창</span>시작 시각에 파일·링크·첫 15분 할 일을 모아 띄움 + 타이머</div>
+      <div class="step"><span class="badge b-ai">AI</span><span class="t">⑤ 캐릭터 압박</span>남은 날짜 × 진행률로 칭찬 → 다정 → 잔소리 → 협박</div>
+      <div class="step"><span class="badge b-rule">규칙</span><span class="t">⑥ 보정·재조정</span>타이머 기록으로 스타일 갱신, 밀린 블록 자동 재배치</div>
+    </div>
+    <div class="loop">↻ 쓸수록 ⑥의 기록이 ③ 스케줄에 반영되어 점점 나에게 맞춰진다</div>
+  </section>
+
+  <section>
+    <h2><span class="n">3</span>핵심 화면</h2>
+    <div class="phones">
+
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="ph-title">과제 3건 추가됨 <span>파일 2 · 캡처 1</span></div>
+          <div class="card">
+            <div class="row1"><span class="chip c-rep">보고서</span>경영학원론 기말 보고서</div>
+            마감 10/24(금) 23:59 · A4 5쪽<br>
+            <span class="est">예상 6시간 → <b>내 보정 7.2시간</b> (×1.2)</span>
+          </div>
+          <div class="card">
+            <div class="row1"><span class="chip c-lec">녹강</span>통계학 7주차</div>
+            수강 기간 10/20~10/26 · 90% 시청 시 출석<br>
+            <span class="est">75분 ÷ 1.5배속 + 정리 → <b>1시간</b></span>
+          </div>
+          <div class="card">
+            <div class="row1"><span class="chip c-code">코딩</span>자료구조 과제 3</div>
+            마감 10/22(수) · 문제 3개<br>
+            <span class="est">예상 4시간 → <b>내 보정 8시간</b> (×2.0)</span>
+          </div>
+          <div class="ask">
+            🤖 자료구조 과제 제출 시각이 파일에 없어요. <b>23:59</b>로 둘까요?
+            <div class="btns"><span class="on">네</span><span>직접 입력</span></div>
+          </div>
+        </div>
+        <div class="cap">① 파일만 올리면 과제 카드 자동 생성</div>
+      </div>
+
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="ph-title">이번 주 스케줄 <span>집중 2h · 저녁형</span></div>
+          <div class="week">
+            <div></div><div class="dh">토</div><div class="dh">일</div><div class="dh">월</div><div class="dh">화</div><div class="dh dl">수</div><div class="dh">목</div><div class="dh dl">금</div>
+            <div class="tm"><span>9</span><span>13</span><span>17</span><span>21</span><span>24</span></div>
+            <div class="col"><div class="blk bk-fix" style="top:calc(var(--u)*4);height:calc(var(--u)*3)">알바</div><div class="blk bk-code" style="top:calc(var(--u)*10);height:calc(var(--u)*2)">자구<br>2h</div></div>
+            <div class="col"><div class="blk bk-code bk-miss" style="top:calc(var(--u)*5);height:calc(var(--u)*2)">자구<br>놓침</div></div>
+            <div class="col"><div class="blk bk-fix" style="top:calc(var(--u)*0);height:calc(var(--u)*3)">수업</div><div class="blk bk-lec" style="top:calc(var(--u)*6);height:calc(var(--u)*1)">녹강</div><div class="blk bk-code" style="top:calc(var(--u)*10);height:calc(var(--u)*2)">자구<br>2h</div></div>
+            <div class="col"><div class="blk bk-fix" style="top:calc(var(--u)*1);height:calc(var(--u)*3.5)">수업</div><div class="blk bk-rep" style="top:calc(var(--u)*8);height:calc(var(--u)*1)">보고</div><div class="blk bk-code bk-moved" style="top:calc(var(--u)*12);height:calc(var(--u)*2)">자구<br>2h</div></div>
+            <div class="col"><div class="blk bk-fix" style="top:calc(var(--u)*0);height:calc(var(--u)*3)">수업</div><div class="blk bk-code" style="top:calc(var(--u)*5);height:calc(var(--u)*2)">자구<br>2h</div><div class="blk bk-rep" style="top:calc(var(--u)*10);height:calc(var(--u)*2)">보고<br>2h</div></div>
+            <div class="col"><div class="blk bk-fix" style="top:calc(var(--u)*4);height:calc(var(--u)*3)">알바</div><div class="blk bk-rep" style="top:calc(var(--u)*10);height:calc(var(--u)*2)">보고<br>2h</div></div>
+            <div class="col"><div class="blk bk-rep" style="top:calc(var(--u)*1);height:calc(var(--u)*2.1999999999999993)">보고<br>2.2h</div></div>
+          </div>
+          <div class="legend"><span><i style="background:var(--gray)"></i>고정 일정</span><span><i style="background:var(--orange)"></i>코딩</span><span><i style="background:var(--blue)"></i>보고서</span><span><i style="background:var(--green)"></i>녹강</span><span>빨간 요일 = 마감</span></div>
+          <div class="toast">일요일 자구 블록을 놓쳤어요. <b>화요일 21시로 옮겼어요</b>(점선). 마감 전까지 여유 1.5시간 남아요.</div>
+        </div>
+        <div class="cap">② 고정 일정을 피해 스타일대로 배치·자동 재조정</div>
+      </div>
+
+      <div class="phone-wrap">
+        <div class="phone">
+          <div class="warn-top">
+            <svg width="13mm" height="13mm" style="flex:none"><use href="#f3"/></svg>
+            <div class="bubble"><span class="dd">D-1 · 협박</span><br>자료구조 과제 내일 마감인데 계획의 40%밖에 안 했어. 지금 안 켜면 오늘 밤새는 거 확정이야.</div>
+          </div>
+          <div class="prog"><span>진행률 40%</span><span>계획상 지금 75%</span></div>
+          <div class="bar"><i style="width:40%"></i><s style="left:75%"></s></div>
+          <div class="ws">
+            <div class="wt">작업 창 · 자료구조 과제 3</div>
+            <ul>
+              <li class="done">문제 1 연결 리스트 구현</li>
+              <li>문제 2 스택으로 괄호 검사</li>
+              <li>문제 3 큐 시뮬레이션</li>
+              <li>제출: .zip, 학번_이름</li>
+            </ul>
+            <div class="first"><b>첫 15분 할 일</b><br>문제 2 입력 형식 읽고 함수 틀 만들기</div>
+            <div class="small">📎 과제3.pdf · 7주차 강의자료 · 제출 링크</div>
+            <div class="timer"><span class="clock">00:15:00</span><span class="go">시작</span></div>
+          </div>
+        </div>
+        <div class="cap">③ 날짜×진행률 경고와 바로 시작하는 작업 창</div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="bottom">
+    <section class="cmp">
+      <h2><span class="n">4</span>같은 과제, 다른 스케줄</h2>
+      <div class="small">경영학원론 보고서 · 마감 10/24(금) · 보정 후 7.2시간</div>
+      <div class="who">미리형 <span>나눠서 · 집중 2시간 · 여유 2일</span></div>
+      <div class="tl">
+        <div class="d">토</div><div class="d">일</div><div class="d">월</div><div class="d">화</div><div class="d">수</div><div class="d">목</div><div class="d dl">금</div>
+        <div class="c"><i style="height:100%">2h</i></div><div class="c"><i style="height:100%">2h</i></div><div class="c"><i style="height:100%">2h</i></div><div class="c"><i style="height:60%">1.2h</i></div><div class="c"></div><div class="c"></div><div class="c"></div>
+      </div>
+      <div class="who">몰아형 <span>몰아서 · 집중 3시간 · 안전선 D-2</span></div>
+      <div class="tl">
+        <div class="d">토</div><div class="d">일</div><div class="d">월</div><div class="d">화</div><div class="d">수</div><div class="d">목</div><div class="d dl">금</div>
+        <div class="c"></div><div class="c"></div><div class="c"></div><div class="c"><i style="height:40%">1h</i></div><div class="c safe"><i style="height:100%">3h</i></div><div class="c"><i style="height:100%">3.2h</i></div><div class="c"></div>
+      </div>
+      <div class="note">몰아형도 안전선(D-2) 전에 첫 블록 1개로 착수시켜, 막판에 예상보다 오래 걸려도 대응할 수 있게 한다. 두 사람의 실제 소요 시간이 쌓이면 보정 배율과 시작 시점이 각자 다시 조정된다.</div>
+    </section>
+
+    <section>
+      <h2><span class="n">5</span>압박 단계 — 남은 날짜 × 진행률</h2>
+      <table class="mx">
+        <tr><th class="rh">진행 \ 남은 날짜</th><th>시작 전</th><th>~D-3</th><th>D-2~D-1</th><th>당일</th></tr>
+        <tr><th class="rh">앞섬 110%↑</th><td class="lx">시작 예고</td><td class="l0">칭찬</td><td class="l0">칭찬</td><td class="l1">다정</td></tr>
+        <tr><th class="rh">계획대로</th><td class="lx">시작 예고</td><td class="l1">다정</td><td class="l1">다정</td><td class="l2">잔소리</td></tr>
+        <tr><th class="rh">뒤처짐 80%↓</th><td class="lx">—</td><td class="l2">잔소리</td><td class="l3">협박</td><td class="l3">협박</td></tr>
+        <tr><th class="rh">미착수</th><td class="lx">—</td><td class="l2">잔소리</td><td class="l3">협박</td><td class="l3">협박</td></tr>
+      </table>
+      <div class="faces">
+        <div><svg width="10mm" height="10mm"><use href="#f0"/></svg><br>칭찬<p>"벌써 절반! 오늘은 쉬어"</p></div>
+        <div><svg width="10mm" height="10mm"><use href="#f1"/></svg><br>다정<p>"오늘 2시간만 같이 하자"</p></div>
+        <div><svg width="10mm" height="10mm"><use href="#f2"/></svg><br>잔소리<p>"어제 것도 밀렸는데…"</p></div>
+        <div><svg width="10mm" height="10mm"><use href="#f3"/></svg><br>협박<p>"지금 안 켜면 밤샘 확정"</p></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="croche">
+    <div class="lbl">Croche<br>활용</div>
+    <div><b>Tool 인터페이스</b>스케줄 배치·재조정 알고리즘을 Tool로 등록해 계산은 정확하게</div>
+    <div><b>Memory·상태 관리</b>스타일 수치와 과제 진행 상태를 저장해 쓸수록 맞춤</div>
+    <div><b>Context·Session</b>과제별 파일·대화·진행 기록을 세션으로 묶음</div>
+    <div><b>비용·품질 제어</b>분석은 고성능 모델 1회, 경고 문구는 경량 모델</div>
+  </div>
+
+</div></div>
+</body>
+</html>
