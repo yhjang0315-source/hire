@@ -1,0 +1,67 @@
+{
+  "_note": "survey는 온보딩 설문 답, profile은 timer_logs.json 1주 기록으로 보정한 뒤의 값. 시연에서 두 프로필을 전환해 스케줄 차이를 보여 준다.",
+  "cram": {
+    "survey": {
+      "q1_start": "1~2일 전",
+      "q2_split": "몰아서",
+      "q3_focus": "3시간 이상",
+      "q4_overrun": "2배 이상",
+      "q5_time": [
+        "저녁",
+        "새벽"
+      ]
+    },
+    "profile": {
+      "mode": "cram",
+      "startDaysBefore": 1,
+      "multiplier": {
+        "report": 1.2,
+        "problem": 1.5,
+        "coding": 2.0,
+        "slides": 1.5,
+        "team": 1.5,
+        "exam": 1.2,
+        "lecture": 1.1
+      },
+      "focusMin": 180,
+      "preferred": [
+        "evening",
+        "night"
+      ],
+      "wake": "09:30",
+      "sleep": "02:00"
+    }
+  },
+  "early": {
+    "survey": {
+      "q1_start": "3~6일 전",
+      "q2_split": "나눠서",
+      "q3_focus": "2시간",
+      "q4_overrun": "1.5배",
+      "q5_time": [
+        "아침",
+        "오후"
+      ]
+    },
+    "profile": {
+      "mode": "early",
+      "startDaysBefore": 5,
+      "multiplier": {
+        "report": 1.2,
+        "problem": 1.2,
+        "coding": 1.5,
+        "slides": 1.3,
+        "team": 1.3,
+        "exam": 1.2,
+        "lecture": 1.0
+      },
+      "focusMin": 120,
+      "preferred": [
+        "morning",
+        "afternoon"
+      ],
+      "wake": "08:00",
+      "sleep": "00:30"
+    }
+  }
+}

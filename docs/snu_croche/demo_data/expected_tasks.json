@@ -1,0 +1,74 @@
+{
+  "_note": "files/ 시연 자료를 Croche extractTasks에 넣었을 때 기대하는 결과. 프롬프트·스키마 조정 기준으로 쓴다. needH는 앱이 프로필 보정 배율로 계산.",
+  "report_management.pdf": [
+    {
+      "title": "기말 보고서: 국내 기업 ESG 경영 사례 분석",
+      "course": "경영학원론",
+      "type": "report",
+      "dueAt": "2026-10-23T23:59:00+09:00",
+      "amount": "A4 5쪽 내외",
+      "submitFormat": ".docx 또는 .pdf, 파일명 학번_이름",
+      "weight": 0.2,
+      "estimateH": 6,
+      "steps": [
+        "분석할 기업 선정과 자료 조사",
+        "개요 작성(사례 2가지·이론 연결)",
+        "본문 초안",
+        "개선 제안과 퇴고, 형식·출처 정리"
+      ],
+      "firstStep": "지속가능경영보고서를 공개한 국내 기업 3곳 후보 찾기",
+      "questions": []
+    }
+  ],
+  "coding_ds_hw3.pdf": [
+    {
+      "title": "자료구조 과제 3 — 리스트, 스택, 큐",
+      "course": "자료구조",
+      "type": "coding",
+      "dueAt": null,
+      "amount": "문제 3개",
+      "submitFormat": ".zip, 파일명 학번_이름.zip",
+      "weight": 0.1,
+      "estimateH": 4,
+      "steps": [
+        "문제 1 연결 리스트 구현",
+        "문제 2 스택으로 괄호 검사",
+        "문제 3 큐 시뮬레이션",
+        "테스트·실행 캡처·압축 제출"
+      ],
+      "firstStep": "문제 2 입력 형식 읽고 함수 틀 만들기",
+      "questions": [
+        {
+          "field": "dueAt",
+          "ask": "자료구조 과제 제출 시각이 파일에 없어요. 23:59로 둘까요?",
+          "suggested": "2026-10-21T23:59:00+09:00"
+        }
+      ]
+    }
+  ],
+  "lecture_stats_week7.png": [
+    {
+      "title": "통계학 7주차 녹화 강의",
+      "course": "통계학",
+      "type": "lecture",
+      "dueAt": "2026-10-25T23:59:00+09:00",
+      "lecture": {
+        "openAt": "2026-10-19T00:00:00+09:00",
+        "videoMin": 75,
+        "attendRule": "영상별 재생 시간 90% 이상 시청"
+      },
+      "amount": "영상 2개(40분, 35분)",
+      "estimateH": 1,
+      "steps": [
+        "7-1 표본분포와 중심극한정리(40분)",
+        "7-2 신뢰구간 추정(35분)",
+        "8주차 퀴즈 대비 핵심 정리"
+      ],
+      "firstStep": "7-1 영상을 1.5배속으로 틀고 첫 개념 메모하기",
+      "questions": []
+    }
+  ],
+  "timetable.png": {
+    "_note": "extractTimetable(P2) 기대 결과는 fixed_events.json의 수업 항목"
+  }
+}

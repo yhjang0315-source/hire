@@ -1,0 +1,16 @@
+@font-face { font-family: "Pretendard"; font-weight: 400; src: url("../../onepager/fonts/Pretendard-Regular.otf"); }
+@font-face { font-family: "Pretendard"; font-weight: 600; src: url("../../onepager/fonts/Pretendard-SemiBold.otf"); }
+@font-face { font-family: "Pretendard"; font-weight: 700; src: url("../../onepager/fonts/Pretendard-Bold.otf"); }
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: "Pretendard", sans-serif; color: #1d2433; word-break: keep-all; }
+.doc { width: 210mm; min-height: 297mm; padding: 22mm 22mm; font-size: 10.5pt; line-height: 1.75; }
+.doc .univ { font-size: 9pt; color: #5b6475; }
+.doc h1 { font-size: 17pt; margin: 2mm 0 1mm; }
+.doc .sub { color: #5b6475; font-size: 9.5pt; padding-bottom: 4mm; border-bottom: 1.5px solid #1d2433; margin-bottom: 6mm; }
+.doc h2 { font-size: 11.5pt; margin: 6mm 0 1.5mm; }
+.doc ol, .doc ul { padding-left: 6mm; }
+.doc table { border-collapse: collapse; width: 100%; margin-top: 2mm; font-size: 10pt; }
+.doc th, .doc td { border: 1px solid #c9cfdb; padding: 1.8mm 3mm; text-align: left; vertical-align: top; }
+.doc th { background: #f3f5f9; width: 30mm; font-weight: 600; }
+.doc .note { margin-top: 8mm; font-size: 9pt; color: #5b6475; }
